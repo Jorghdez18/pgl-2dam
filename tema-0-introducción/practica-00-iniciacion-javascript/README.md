@@ -8,32 +8,31 @@ En esta práctica he preparado el repositorio del módulo y he tenido una primer
 
 El primer paso consistía en mostrar un simple mensaje "Hola javascript" y ejecutarlo desde la raíz del repositorio. Con console.log y dentro del paréntesis la frase que querámos entre comillas podemos realizarlo fácilmente
 
-captura
+![](img/CAP1PGL.png)
 
 El segundo paso consistiría en mostrar varios mensajes, "Estoy preparando mi primera Pokédex" y "Durante el curso utilizaremos JavaScript y TypeScript" y se realizaría siguiendo los pasos del ejercicio anterior.
 
-captura
+![](img/CAP2PGL.png)
 
 El tercer y cuarto paso consistiría en crear varias variables dentro del programa, y por último mostrarlas dentro de un mensaje. Con el comando const junto a el nombre y el valor que le pondremos (const nombre = "valor"), más el comando console.log y llamando a cada variable conseguiremos nuestro mensaje.
 
-captura
+![](img/CAP3PGL.png)
 
 
 ## Ejercicio 2. Operaciones básicas
 
 En primer paso declararemos varias variables de un pokemon, en este caso para este ejercicio utilizaremos el nombre, nivel, experiencia actual, y ganada siguiendo la estructura del comando const del ejercicio anterior.
 
-captura
-
+![](img/CAP2.1PGL.png)
 En segundo paso crearemnos una simple operación donde calcularemos la esxperiencia total, sumando la actual mas la experiencia ganada, y mostrando un mensaje donde mostrará todos los datos recogidos hasta ahora.
 
-captura
+![](img/CAP2.2PGL.png)
 
 Por último haremos una condición utilizando if y else (si if no se cumple se cumplirá else, y si if se cumple no se cumplirá else) donde si se cumpole un requisito nos mostrará si nuestro pokemon creado podrá subir de nivel o no.
 
-captura 1
+![](img/CAP2.3PGL.png)
 
-CAPTURA 2
+![](img/CAP2.4PGL.png)
 
 
 
