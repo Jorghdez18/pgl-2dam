@@ -8,6 +8,11 @@ JavaScript (ES6) code snippets: Su objetivo principal es acelerar la escritura d
 
 ![](img/javascript1.png)
 
+JavaScript Debugger (Nightly): SU objetivo principal es acelerar el proceso de encontrar y corregir errores dentro del código de JavaScript, además de mejoras de rendimiento cada noche directamente desde su repositorio de desarrollo.
+
+![](img/javascript2.png)
+
+
 ### Extensiones para TypeScript:
 
 JavaScript (ES6) code snippets: Su objetivo principal es acelerar la escritura de código JavaScript o TypeScript mediante el uso de abreviaturas (clg --> console.log()).
