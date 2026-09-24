@@ -1,4 +1,4 @@
-# Extensiones válidas de VSCODE
+# Extensiones de VSCODE para PGL
 
 ## Lista de extensiones:
 
