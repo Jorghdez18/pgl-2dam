@@ -28,11 +28,11 @@ Pretty TypeScript Errors: Es una herramienta de productividad visual diseñada p
 
 ### Extensiones para React y React Native: 
 
-React Native Tools:  es un entorno de desarrollo integrado para Visual Studio Code diseñado específicamente para agilizar la creación, ejecución y depuración de aplicaciones móviles creadas con React y React Native.
+React Native Tools: es un entorno de desarrollo integrado para Visual Studio Code diseñado específicamente para agilizar la creación, ejecución y depuración de aplicaciones móviles creadas con React y React Native.
 
 ![](img/react1.png)
 
-React Native Tools: esta herramienta fue diseñada específicamente para acelerar el desarrollo en dispositivos móviles, permitiendo estructurar componentes enteros de React y React Native, y archivos de configuración con solo escribir unas pocas letras.
+Rocket Seat React Native: esta herramienta fue diseñada específicamente para acelerar el desarrollo en dispositivos móviles, permitiendo estructurar componentes enteros de React y React Native, y archivos de configuración con solo escribir unas pocas letras.
 
 ![](img/react2.png)
 
