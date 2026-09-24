@@ -12,6 +12,7 @@ JavaScript Debugger (Nightly): Su objetivo es acelerar el proceso de encontrar y
 
 ![](img/javascript2.png)
 
+----
 
 ### Extensiones para TypeScript:
 
@@ -23,6 +24,8 @@ Pretty TypeScript Errors: Es una herramienta de productividad visual diseñada p
 
 ![](img/typescript1.png)
 
+----
+
 ### Extensiones para React y React Native: 
 
 React Native Tools:  es un entorno de desarrollo integrado para Visual Studio Code diseñado específicamente para agilizar la creación, ejecución y depuración de aplicaciones móviles creadas con React y React Native.
@@ -32,6 +35,8 @@ React Native Tools:  es un entorno de desarrollo integrado para Visual Studio Co
 React Native Tools: esta herramienta fue diseñada específicamente para acelerar el desarrollo en dispositivos móviles, permitiendo estructurar componentes enteros de React y React Native, y archivos de configuración con solo escribir unas pocas letras.
 
 ![](img/react2.png)
+
+----
 
 ### Extensiones para Expo:
 
