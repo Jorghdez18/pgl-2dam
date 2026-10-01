@@ -32,22 +32,3 @@ Captura de la gestión de un Pokémon inexistente o de otro error controlado:
    
 ---
 
-## ✅ Resultado Final y Verificación
-¿Cómo sabes que lo hiciste bien? 
-* El resultado debe verse o funcionar como: **[Descripción del resultado exitoso]**.
-
----
-
-## 🛠️ Resolución de Problemas (FAQ)
-
-* **¿Qué pasa si [Problema común 1]?**
-  * **Solución:** [Explicación de cómo arreglarlo].
-  
-* **¿Qué pasa si [Problema común 2]?**
-  * **Solución:** [Explicación de cómo arreglarlo].
-
----
-
-## 💡 Consejos Extras
-* [Consejo adicional para mejorar el resultado]
-* [Variante o alternativa para hacer la actividad de otra forma]
