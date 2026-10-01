@@ -14,15 +14,15 @@ Primeramente hemos desarrolado una mini-pokédex, en la cuál se encontrará la 
 
 Estructura inicial de carpetas y archivos:
 
-![](/assets/img/tree.png)
+![](assets/img/tree.png)
 
 Captura de la aplicación funcionando + búsqueda:
 
-![](/assets/img/capturaFuncionamiento.png)
+![](assets/img/capturaFuncionamiento.png)
 
 Captura de la gestión de un Pokémon inexistente o de otro error controlado:
 
-![](/assets/img/error.png)
+![](assets/img/error.png)
 
 
 
