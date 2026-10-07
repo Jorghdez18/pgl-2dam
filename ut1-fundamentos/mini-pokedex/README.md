@@ -21,13 +21,9 @@ Esta mini-Pokédex tiene de momento:
 
 ![Estructura inicial](assets/img/tree.png)
 
-### Aplicación funcionando
+### Aplicación funcionando + búsqueda
 
 ![Aplicación funcionando](assets/img/capturaFuncionamiento.png)
-
-### Búsqueda de un Pokémon
-
-![Búsqueda de un Pokémon](assets/img/capturaBusqueda.png)
 
 ### Gestión de un Pokémon inexistente o de otro error controlado
 
