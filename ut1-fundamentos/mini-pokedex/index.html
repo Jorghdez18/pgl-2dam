@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Mini-Pokédex</title>
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <main class="contenedor">
+
+    <header class="cabecera">
+
+      <div class="pokeball">
+        <div class="pokeball__centro"></div>
+      </div>
+
+      <h1>MINI-POKÉDEX</h1>
+
+      <p>
+        BUSCA UN POKÉMON
+      </p>
+
+    </header>
+
+    <form
+      id="formulario-busqueda"
+      class="buscador"
+    >
+
+      <label for="busqueda">
+        NOMBRE O NÚMERO
+      </label>
+
+      <div class="buscador__controles">
+
+        <input
+          id="busqueda"
+          name="busqueda"
+          type="text"
+          placeholder="PIKACHU / 25"
+          autocomplete="off"
+        >
+
+        <button type="submit">
+          BUSCAR
+        </button>
+
+      </div>
+
+    </form>
+
+    <p
+      id="mensaje"
+      class="mensaje"
+      aria-live="polite"
+    ></p>
+
+    <section
+      id="resultado"
+      class="resultado"
+    ></section>
+
+  </main>
+
+  <footer class="pie">
+    MINI-POKÉDEX · 2º DAM
+  </footer>
+
+  <script src="js/Pokemon.js"></script>
+  <script src="js/app.js"></script>
+
+</body>
+</html>
