@@ -71,10 +71,6 @@ formulario.addEventListener("submit", (evento) => {
 
 Con `preventDefault()` evitamos que el formulario recargue la página y ejecutamos la función encargada de realizar la búsqueda.
 
-### Commit del punto de partida
-
-> **Pendiente:** añadir el enlace o identificador del commit correspondiente al código inicial de la práctica guiada.
-
 ---
 
 ## 2. Carga de los 151 Pokémon
@@ -226,12 +222,6 @@ La altura y el peso se guardan inicialmente con las unidades proporcionadas por 
 
 ![Carga de Pokémon](assets/img/carga.png)
 
-> **Pendiente:** añadir una captura real de la aplicación con los 151 Pokémon cargados.
-
-### Commit
-
-> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
-
 ---
 
 ## 3. Creación de las tarjetas de Pokémon
@@ -362,12 +352,6 @@ Este botón permite abrir una ventana con información ampliada del Pokémon sel
 
 ![Tarjetas de Pokémon](assets/img/tarjetas.png)
 
-> **Pendiente:** comprobar que las tarjetas se muestran correctamente y añadir una captura real.
-
-### Commit
-
-> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
-
 ---
 
 ## 4. Búsqueda de Pokémon
@@ -457,7 +441,7 @@ Si se selecciona el tipo `fire` y se escribe un nombre, solo se mostrarán los P
 
 ### Búsqueda vacía y resultados
 
-Si la búsqueda está vacía, `!busqueda` permite que coincidan todos los Pokémon que cumplan el filtro de tipo seleccionado.
+Si la búsqueda está vacía, devuelve todos los Pokémon porque no hay ningún texto que limite los resultados.
 
 Si no existe ninguna coincidencia, `mostrarPokemons()` limpia el contenedor y muestra el mensaje:
 
@@ -483,12 +467,6 @@ El evento `submit` ejecuta la búsqueda y `preventDefault()` evita que la págin
 ### Captura de la búsqueda
 
 ![Búsqueda de Pokémon](assets/img/capturaBusqueda.png)
-
-> **Pendiente:** comprobar y actualizar la captura con la versión actual de la aplicación.
-
-### Commit
-
-> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
 
 ---
 
@@ -560,12 +538,6 @@ Por ejemplo, si escribimos un nombre y seleccionamos `fire`, solo aparecerán lo
 ### Captura de los filtros
 
 ![Filtros por tipo](assets/img/filtros.png)
-
-> **Pendiente:** añadir una captura real del filtro por tipo y otra que muestre la búsqueda combinada con el filtro.
-
-### Commit
-
-> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
 
 ---
 
@@ -664,12 +636,6 @@ La ventana se puede cerrar mediante el botón de cierre o pulsando sobre el fond
 
 ![Detalles de un Pokémon](assets/img/detalles.png)
 
-> **Pendiente:** añadir una captura real de la ventana abierta y, si es posible, otra con la ventana cerrada.
-
-### Commit
-
-> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
-
 ---
 
 ## 7. Estados y gestión de errores
@@ -734,59 +700,9 @@ Así evitamos mostrar directamente información técnica del error al usuario.
 
 ![Gestión de errores](assets/img/error.png)
 
-> **Pendiente:** comprobar el comportamiento ante un error real de conexión y añadir una captura de la prueba.
-
-### Commit
-
-> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
 
 ---
 
-## 8. Diseño adaptable (responsive)
-
-La aplicación utiliza CSS para organizar las tarjetas en una cuadrícula que se adapta al espacio disponible.
-
-Por ejemplo:
-
-```css
-.resultado {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-```
-
-`grid-template-columns` permite crear tantas columnas como quepan, respetando un ancho mínimo para las tarjetas.
-
-También se utilizan media queries para modificar la distribución en pantallas pequeñas:
-
-```css
-@media (max-width: 480px) {
-  .resultado {
-    grid-template-columns: 1fr;
-  }
-
-  .buscador__controles {
-    flex-direction: column;
-  }
-
-  .buscador button {
-    width: 100%;
-  }
-}
-```
-
-Con estas reglas, las tarjetas pueden mostrarse en una sola columna en móviles y los controles del buscador se colocan uno debajo de otro.
-
-> **Nota:** estos fragmentos son ejemplos de las reglas utilizadas. Deben coincidir con el CSS definitivo del proyecto.
-
-### Captura del diseño adaptable
-
-![Diseño responsive](assets/img/responsive.png)
-
-> **Pendiente:** añadir una captura real de la aplicación en una ventana estrecha o dispositivo móvil.
-
----
 
 ## 9. Pruebas finales
 
