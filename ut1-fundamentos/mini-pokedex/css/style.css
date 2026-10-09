@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
 }
@@ -33,6 +34,8 @@ body {
   font-size: 0.85rem;
   letter-spacing: 2px;
 }
+
+/* Pokéball decorativa */
 
 .pokeball {
   position: relative;
@@ -133,6 +136,37 @@ body {
   background: #c92525;
 }
 
+
+
+.filtro-tipos {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 4px solid #222;
+  background: #fff;
+  box-shadow: 5px 5px 0 #999;
+}
+
+.filtro-tipos label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.filtro-tipos select {
+  width: 100%;
+  padding: 0.7rem;
+  border: 3px solid #222;
+  border-radius: 0;
+  background: #f5f5f5;
+  color: #222;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
 .mensaje {
   min-height: 1.2rem;
   margin: 1rem 0;
@@ -146,6 +180,7 @@ body {
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 1rem;
 }
+
 
 .pokemon {
   width: 100%;
@@ -209,10 +244,15 @@ body {
 
 .pokemon__tipos {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 0.4rem;
   margin-bottom: 1rem;
 }
+
+/* ==============================
+   TIPOS DE POKÉMON
+============================== */
 
 .tipo {
   padding: 0.3rem 0.6rem;
@@ -294,14 +334,16 @@ body {
   background: #d685ad;
 }
 
+
 .pokemon__datos {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
 .dato {
+  min-width: 0;
   padding: 0.6rem 0.3rem;
   border: 3px solid #222;
   text-align: center;
@@ -313,11 +355,116 @@ body {
   margin-bottom: 0.3rem;
   font-size: 0.65rem;
   font-weight: bold;
+  overflow-wrap: anywhere;
 }
 
 .dato strong {
   font-size: 0.85rem;
+  overflow-wrap: anywhere;
 }
+
+
+.pokemon__boton-detalles {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.7rem;
+  border: 3px solid #222;
+  background: #e33535;
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.pokemon__boton-detalles:hover {
+  background: #c92525;
+}
+
+#ventana-detalles {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 99999 !important;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+#ventana-detalles[hidden] {
+  display: none !important;
+}
+
+#ventana-detalles:not([hidden]) {
+  display: flex !important;
+}
+
+.ventana-detalles__contenido {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  border: 4px solid #222;
+  background: #fff;
+  color: #222;
+  box-shadow: 8px 8px 0 #999;
+}
+
+.ventana-detalles__cerrar {
+  display: block;
+  margin-left: auto;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  border: 3px solid #222;
+  background: #e33535;
+  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.ventana-detalles__cerrar:hover {
+  background: #c92525;
+}
+
+.ventana-detalles__contenido h2,
+.ventana-detalles__contenido h3 {
+  text-align: center;
+}
+
+.ventana-detalles__contenido h2 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.ventana-detalles__contenido h3 {
+  margin-top: 1.2rem;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.ventana-detalles__contenido p {
+  overflow-wrap: anywhere;
+}
+
+.ventana-detalles__contenido .pokemon__imagen-detalles {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  image-rendering: pixelated;
+}
+
+.pokemon__estadisticas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
 
 .pokemon__seccion {
   padding-top: 0.8rem;
@@ -348,7 +495,9 @@ body {
   font-size: 0.7rem;
   font-weight: bold;
   text-transform: uppercase;
+  overflow-wrap: anywhere;
 }
+
 
 .pie {
   margin-top: 2rem;
@@ -357,6 +506,7 @@ body {
   font-size: 0.7rem;
   letter-spacing: 1px;
 }
+
 
 @media (max-width: 480px) {
   body {
@@ -394,6 +544,15 @@ body {
   }
 
   .pokemon__datos {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.3rem;
+  }
+
+  .dato {
+    padding: 0.5rem 0.2rem;
+  }
+
+  .ventana-detalles__contenido {
+    padding: 1rem;
   }
 }
