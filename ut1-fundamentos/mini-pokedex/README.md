@@ -748,17 +748,3 @@ No se han utilizado frameworks ni bibliotecas externas de JavaScript.
 
 ---
 
-## 10. Conclusiones
-
-Con esta actividad se ha ampliado la mini-Pokédex inicial utilizando JavaScript para consultar y transformar información de PokéAPI.
-
-Durante el desarrollo se han trabajado las peticiones con `fetch()`, las funciones asíncronas, los arrays, los objetos, las clases y los métodos `map()`, `filter()` y `join()`.
-
-También se ha practicado la manipulación del DOM, la gestión de eventos, la creación dinámica de tarjetas, la búsqueda, los filtros y la visualización de información ampliada mediante una ventana de detalles.
-
-Además, se ha trabajado en la organización del proyecto en distintos archivos y en la documentación del desarrollo mediante Git, GitHub y este README.
-
-> **Pendiente de completar al finalizar:** añadir una valoración personal sobre las dificultades encontradas, cómo se resolvieron y qué conocimientos se han adquirido.
-
----
-
