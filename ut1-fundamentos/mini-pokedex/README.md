@@ -1,27 +1,28 @@
 # Actividad final: desarrollo de una Pokédex con JavaScript
 
-En esta actividad ampliaremos la mini-Pokédex desarrollada en la guía de la práctica Pre-pokédex hasta convertirla en una Pokédex más completa.
+En esta actividad hemos ampliado la mini-Pokédex desarrollada en la guía de la práctica Pre-pokédex hasta convertirla en una Pokédex más completa.
 
-La aplicación consultará información real de Pokémon mediante PokéAPI y generará su contenido dinámicamente con JavaScript.
+La aplicación consulta información real de Pokémon mediante PokéAPI y genera su contenido dinámicamente con JavaScript.
 
 ---
 
 ## 1. Punto de partida
 
-Primeramente hemos desarrollado una mini-Pokédex, en la cual se encuentra la base sobre la que vamos a realizar una versión mejorada.
+Primeramente, desarrollamos una mini-Pokédex que sirve como base para realizar una versión mejorada.
 
-Esta mini-Pokédex tiene de momento:
+La mini-Pokédex inicial tiene las siguientes funcionalidades:
 
-* Una barra de búsqueda en la cual podemos introducir el número o el nombre de un Pokémon.
-* Al buscar un Pokémon aparecen su número, nombre, peso, altura y tipo.
-* La Pokédex se conecta a una API que contiene información sobre los Pokémon.
-* Los datos obtenidos de la API se muestran dinámicamente en la página.
+* Una barra de búsqueda en la que podemos introducir el nombre o número de un Pokémon.
+* Una tarjeta con el número, nombre, peso, altura y tipo del Pokémon.
+* Conexión a PokéAPI para obtener información real.
+* Visualización dinámica de los datos obtenidos.
+* Gestión básica de errores cuando no se encuentra un Pokémon.
 
 ### Estructura inicial de carpetas y archivos
 
 ![Estructura inicial](assets/img/tree.png)
 
-### Aplicación funcionando + búsqueda
+### Aplicación funcionando y búsqueda
 
 ![Aplicación funcionando](assets/img/capturaFuncionamiento.png)
 
@@ -31,7 +32,7 @@ Esta mini-Pokédex tiene de momento:
 
 ### Código utilizado para obtener un Pokémon
 
-Una de las partes principales de la mini-Pokédex es la función que realiza la petición a PokéAPI:
+Una de las funciones principales de la mini-Pokédex es `obtenerPokemon`, que realiza una petición a PokéAPI:
 
 ```js
 const obtenerPokemon = async (busqueda) => {
@@ -51,47 +52,36 @@ const obtenerPokemon = async (busqueda) => {
 
 ### Explicación
 
-La función `obtenerPokemon` recibe como parámetro el nombre o número del Pokémon que queremos buscar.
+La función `obtenerPokemon` recibe como parámetro el nombre o número del Pokémon que queremos consultar.
 
-Se utiliza `fetch` para realizar una petición a PokéAPI. Después se comprueba si la respuesta ha sido correcta.
+Se utiliza `fetch()` para realizar una petición a PokéAPI. Después se comprueba si la respuesta ha sido correcta mediante `respuesta.ok`.
 
-Si la respuesta no es correcta, se produce un error.
+Si la petición falla, se lanza un error. Si funciona correctamente, se convierte la respuesta a JSON y se crea un objeto de la clase `Pokemon`.
 
-Si todo funciona correctamente, los datos se convierten en un objeto de la clase `Pokemon`.
+### Código de la búsqueda inicial
 
-### Código de la búsqueda
-
-La búsqueda inicial utilizaba el formulario de la página:
+La búsqueda utiliza un evento asociado al formulario:
 
 ```js
 formulario.addEventListener("submit", (evento) => {
   evento.preventDefault();
-
   buscarPokemons();
 });
 ```
 
-Con esto conseguimos que al pulsar el botón de búsqueda se ejecute la función correspondiente sin recargar la página.
-
-### Funcionalidad inicial
-
-La aplicación permite buscar un Pokémon utilizando su nombre o número.
-
-Los datos se obtienen mediante una petición a PokéAPI y posteriormente se muestran en la página.
-
-También se controla el caso de que el Pokémon buscado no exista, mostrando un mensaje de error en lugar de dejar la aplicación bloqueada.
+Con `preventDefault()` evitamos que el formulario recargue la página y ejecutamos la función encargada de realizar la búsqueda.
 
 ### Commit del punto de partida
 
-> **Pendiente:** añadir aquí el enlace o identificador del commit correspondiente al punto de partida.
+> **Pendiente:** añadir el enlace o identificador del commit correspondiente al código inicial de la práctica guiada.
 
 ---
 
-# 2. Carga de la colección de Pokémon
+## 2. Carga de los 151 Pokémon
 
-En esta fase se amplió la aplicación para poder cargar una colección de Pokémon desde PokéAPI.
+En esta fase se amplió la aplicación para cargar los 151 Pokémon de la primera generación.
 
-En lugar de pedir solamente un Pokémon cuando el usuario realiza una búsqueda, la aplicación obtiene primero una colección y la guarda en un array.
+En lugar de consultar únicamente un Pokémon cada vez que el usuario realiza una búsqueda, primero se obtiene la colección y se guarda en un array.
 
 ### Array de Pokémon
 
@@ -101,34 +91,35 @@ Para guardar los Pokémon utilizamos:
 let pokemons = [];
 ```
 
-Este array se utilizará posteriormente para mostrar, buscar y filtrar los Pokémon sin tener que realizar una nueva petición a la API cada vez.
+Este array almacena los objetos de la clase `Pokemon` y permite mostrar, buscar y filtrar sus datos sin tener que volver a consultar la API en cada búsqueda.
 
-### Carga de Pokémon
+### Función de carga
 
-La función utilizada para cargar la colección es:
+La función `cargarPokemons()` obtiene los primeros 151 Pokémon:
 
 ```js
 const cargarPokemons = async () => {
   mensaje.textContent = "Cargando Pokémon...";
   resultado.innerHTML = "";
+  pokemons = [];
 
   try {
     const respuesta = await fetch(
-      "https://pokeapi.co/api/v2/pokemon?limit=2000"
+      "https://pokeapi.co/api/v2/pokemon?limit=151"
     );
 
     if (!respuesta.ok) {
-      throw new Error();
+      throw new Error("No se han podido cargar los Pokémon.");
     }
 
     const datos = await respuesta.json();
 
     for (const pokemon of datos.results) {
       const pokemonCompleto = await obtenerPokemon(pokemon.name);
-
       pokemons.push(pokemonCompleto);
     }
 
+    cargarTipos();
     mostrarPokemons(pokemons);
 
     mensaje.textContent = `Pokémon cargados: ${pokemons.length}`;
@@ -143,40 +134,31 @@ const cargarPokemons = async () => {
 
 ### Explicación
 
-Primero se muestra el mensaje `Cargando Pokémon...`.
+Primero se muestra el mensaje `Cargando Pokémon...` y se vacía el contenedor de resultados.
 
-Después se realiza una petición a PokéAPI para obtener una cantidad grande de Pokémon.
-
-Se ha utilizado:
+Después se realiza una petición a:
 
 ```text
-limit=2000
+https://pokeapi.co/api/v2/pokemon?limit=151
 ```
 
-para no limitar la aplicación solamente a los 151 Pokémon de la primera generación y poder cargar todos los Pokémon disponibles actualmente dentro de ese límite.
+El parámetro `limit=151` limita la lista a los primeros 151 Pokémon.
 
-La API devuelve una lista de resultados. Después se recorre esa lista y se obtiene la información completa de cada Pokémon.
+La respuesta contiene una lista con los nombres y las direcciones de los Pokémon. Para obtener todos sus datos, se recorre la lista y se llama a `obtenerPokemon()` para cada uno.
 
-Cada Pokémon se guarda en el array `pokemons`.
+Cada objeto completo se añade al array `pokemons`.
 
-Finalmente se muestran todos los Pokémon en la página.
+Cuando termina la carga, se ejecuta `cargarTipos()` para preparar el selector de tipos y `mostrarPokemons()` para crear las tarjetas.
 
-### Gestión de errores
+Por último, se muestra el número de Pokémon cargados.
 
-La carga se encuentra dentro de un `try/catch`.
+### Gestión de errores durante la carga
 
-Si ocurre algún problema, se muestra un mensaje comprensible:
+La función utiliza un bloque `try/catch` para controlar los errores.
 
-```js
-catch (error) {
-  mensaje.textContent =
-    "No se han podido cargar los Pokémon. Inténtalo de nuevo.";
+Si falla una petición o se produce un problema durante la carga, se muestra un mensaje comprensible y se vacían los resultados.
 
-  resultado.innerHTML = "";
-}
-```
-
-De esta forma el usuario no recibe directamente un mensaje técnico de JavaScript.
+Actualmente, el mensaje indica que se puede volver a intentar, pero todavía hay que comprobar o implementar un botón de reintento para cumplir completamente este requisito.
 
 ### Clase Pokemon
 
@@ -186,9 +168,7 @@ Para organizar los datos obtenidos de la API se creó el archivo:
 js/Pokemon.js
 ```
 
-En él se encuentra la clase `Pokemon`.
-
-Una parte de la clase es:
+Este archivo contiene la clase `Pokemon`, que guarda los datos necesarios para mostrar las tarjetas y la información ampliada.
 
 ```js
 class Pokemon {
@@ -205,7 +185,9 @@ class Pokemon {
     this.altura = datos.height;
     this.peso = datos.weight;
 
-    this.tipos = datos.types.map((tipo) => tipo.type.name);
+    this.tipos = datos.types.map(
+      (tipo) => tipo.type.name
+    );
 
     this.habilidades = datos.abilities.map(
       (habilidad) => habilidad.ability.name
@@ -216,7 +198,6 @@ class Pokemon {
     ).base_stat;
 
     this.experiencia = datos.base_experience;
-
     this.estadisticas = datos.stats;
   }
 }
@@ -224,7 +205,7 @@ class Pokemon {
 
 ### Explicación de la clase
 
-La clase `Pokemon` sirve para guardar solamente los datos que necesitamos utilizar en nuestra aplicación.
+La clase `Pokemon` selecciona los datos que necesita la aplicación de la respuesta de PokéAPI.
 
 Por ejemplo:
 
@@ -233,119 +214,67 @@ this.id = datos.id;
 this.nombre = datos.name;
 ```
 
-guardan el número y el nombre.
+guarda el identificador y el nombre del Pokémon.
 
-También se guardan las imágenes:
+También almacena las imágenes frontal y trasera, los tipos, la altura, el peso, las habilidades, la experiencia base y las estadísticas.
 
-```js
-this.imagen = datos.sprites.front_default;
-this.imagenEspalda = datos.sprites.back_default;
-```
+Para obtener los nombres de los tipos se utiliza `map()`, que permite recorrer el array de tipos y guardar únicamente sus nombres.
 
-La API proporciona la altura y el peso en unas unidades diferentes a las que mostramos en pantalla. Por eso posteriormente se realiza la conversión.
+La altura y el peso se guardan inicialmente con las unidades proporcionadas por PokéAPI y se convierten después para mostrarlos en las tarjetas.
 
 ### Captura de la carga
 
 ![Carga de Pokémon](assets/img/carga.png)
 
-> **Pendiente:** añadir captura cuando esta parte esté terminada y comprobada.
+> **Pendiente:** añadir una captura real de la aplicación con los 151 Pokémon cargados.
 
 ### Commit
 
-> **Pendiente:** añadir enlace o identificador del commit.
+> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
 
 ---
 
-# 3. Creación de las tarjetas de Pokémon
+## 3. Creación de las tarjetas de Pokémon
 
-Después de obtener los datos de los Pokémon, se crean las tarjetas mediante JavaScript.
+Después de cargar los datos, se crean las tarjetas mediante JavaScript.
 
 Cada tarjeta muestra:
 
-* Número de Pokédex.
-* Nombre.
-* Imagen.
-* Tipo o tipos.
-* PS.
-* Altura.
-* Peso.
+* Número de la Pokédex.
+* Nombre del Pokémon.
+* Imagen trasera y frontal.
+* Uno o dos tipos.
+* Puntos de salud (PS).
+* Altura en metros.
+* Peso en kilogramos.
+* Botón para consultar los detalles.
 
 ### Creación de una tarjeta
 
-La función utilizada para crear una tarjeta es:
+La función `crearTarjeta()` recibe un objeto `Pokemon` y genera el HTML de su tarjeta.
+
+Primero crea las etiquetas de los tipos:
 
 ```js
-const crearTarjeta = (pokemon) => {
-  const tiposHTML = pokemon.tipos
-    .map((tipo) => `
-      <span class="tipo tipo--${tipo}">
-        ${tipo}
-      </span>
-    `)
-    .join("");
-
-  return `
-    <article class="pokemon">
-
-      <div class="pokemon__numero">
-        N.º ${pokemon.id}
-      </div>
-
-      <div class="pokemon__imagen-contenedor">
-
-        <img
-          class="pokemon__imagen pokemon__imagen--espalda"
-          src="${pokemon.imagenEspalda}"
-          alt="Imagen trasera de ${pokemon.nombre}"
-        >
-
-        <img
-          class="pokemon__imagen pokemon__imagen--frente"
-          src="${pokemon.imagen}"
-          alt="Imagen frontal de ${pokemon.nombre}"
-        >
-
-      </div>
-
-      <h2 class="pokemon__nombre">
-        ${pokemon.nombre}
-      </h2>
-
-      <div class="pokemon__tipos">
-        ${tiposHTML}
-      </div>
-
-      <div class="pokemon__datos">
-
-        <div class="dato">
-          <span>PS</span>
-          <strong>${pokemon.ps}</strong>
-        </div>
-
-        <div class="dato">
-          <span>Altura</span>
-          <strong>${pokemon.altura / 10} m</strong>
-        </div>
-
-        <div class="dato">
-          <span>Peso</span>
-          <strong>${pokemon.peso / 10} kg</strong>
-        </div>
-
-      </div>
-
-    </article>
-  `;
-};
+const tiposHTML = pokemon.tipos
+  .map((tipo) => `
+    <span class="tipo tipo--${tipo}">
+      ${tipo}
+    </span>
+  `)
+  .join("");
 ```
+
+Se utiliza `map()` para generar una etiqueta HTML por cada tipo y `join("")` para unirlas en una sola cadena.
+
+Después se devuelve el HTML de la tarjeta con sus datos, imágenes y botón de detalles.
 
 ### Mostrar las tarjetas
 
-Una vez creadas las tarjetas, se muestran dentro del elemento `resultado`:
+La función `mostrarPokemons()` recibe una lista y genera las tarjetas correspondientes:
 
 ```js
 const mostrarPokemons = (lista) => {
-
   if (lista.length === 0) {
     resultado.innerHTML = "";
     mensaje.textContent = "No se han encontrado Pokémon.";
@@ -358,29 +287,29 @@ const mostrarPokemons = (lista) => {
 };
 ```
 
-Esta función recibe una lista de Pokémon y crea una tarjeta para cada uno.
+Esta función utiliza `map()` para crear una tarjeta por cada Pokémon y `join("")` para reunir todas las tarjetas en el contenedor `resultado`.
 
-Si la lista está vacía, se muestra un mensaje indicando que no se han encontrado Pokémon.
+Si la lista está vacía, se limpia el contenedor y se muestra un mensaje indicando que no se han encontrado Pokémon.
 
 ### Altura y peso
 
-PokéAPI proporciona la altura y el peso en unidades diferentes a las que queremos mostrar.
+PokéAPI proporciona la altura en decímetros y el peso en hectogramos.
 
-Por eso realizamos la conversión:
+Para mostrarlos en las unidades solicitadas, se realiza la conversión dividiendo entre diez:
 
 ```js
 ${pokemon.altura / 10} m
 ```
 
-y:
-
 ```js
 ${pokemon.peso / 10} kg
 ```
 
-### Sprite trasero y delantero
+De esta manera, la altura aparece en metros y el peso en kilogramos.
 
-Cada tarjeta contiene las dos imágenes:
+### Cambio entre el sprite trasero y el frontal
+
+Cada tarjeta incluye las dos imágenes del Pokémon:
 
 ```html
 <img
@@ -396,9 +325,7 @@ Cada tarjeta contiene las dos imágenes:
 >
 ```
 
-Inicialmente se muestra la imagen trasera.
-
-Cuando el cursor pasa por encima de la tarjeta, mediante CSS se oculta la imagen trasera y se muestra la frontal.
+La imagen trasera se muestra inicialmente. Al colocar el cursor sobre la tarjeta, el CSS oculta el sprite trasero y muestra el frontal.
 
 ```css
 .pokemon__imagen--frente {
@@ -414,47 +341,66 @@ Cuando el cursor pasa por encima de la tarjeta, mediante CSS se oculta la imagen
 }
 ```
 
-No se realiza una nueva petición a la API cuando se pasa el ratón por encima, porque las dos imágenes ya se habían obtenido anteriormente.
+El cambio se realiza con CSS y no necesita una nueva petición a PokéAPI, porque ambas imágenes ya están guardadas en el objeto del Pokémon.
 
-### Captura de las tarjetas
+### Botón de detalles
+
+Cada tarjeta incluye un botón:
+
+```html
+<button
+  type="button"
+  class="pokemon__boton-detalles"
+>
+  VER DETALLES
+</button>
+```
+
+Este botón permite abrir una ventana con información ampliada del Pokémon seleccionado.
+
+### Capturas de las tarjetas
 
 ![Tarjetas de Pokémon](assets/img/tarjetas.png)
 
-> **Pendiente:** añadir captura cuando esta parte esté terminada.
+> **Pendiente:** comprobar que las tarjetas se muestran correctamente y añadir una captura real.
 
 ### Commit
 
-> **Pendiente:** añadir enlace o identificador del commit.
+> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
 
 ---
 
-# 4. Búsqueda de Pokémon
+## 4. Búsqueda de Pokémon
 
-En esta fase se mejoró el sistema de búsqueda para trabajar directamente con la colección que ya se había cargado.
+En esta fase se amplió la búsqueda para trabajar directamente con el array `pokemons`.
 
-Una de las ventajas de cargar primero los Pokémon es que las búsquedas posteriores son más rápidas porque se realizan sobre el array `pokemons`.
+Así podemos buscar Pokémon por nombre, fragmento del nombre, número o tipo sin realizar una nueva petición a la API cada vez que hacemos una búsqueda.
 
 ### Código de búsqueda
 
+La función `buscarPokemons()` obtiene el texto del buscador y el tipo seleccionado:
+
 ```js
 const buscarPokemons = () => {
-
   const busqueda = inputBusqueda.value.trim().toLowerCase();
-
-  if (!busqueda) {
-    mostrarPokemons(pokemons);
-    mensaje.textContent = `Pokémon cargados: ${pokemons.length}`;
-    return;
-  }
+  const tipoSeleccionado = filtroTipo.value;
 
   const resultados = pokemons.filter((pokemon) => {
-
     const coincideNombre = pokemon.nombre.includes(busqueda);
+    const coincideNumero = String(pokemon.id) === busqueda;
+    const coincideTipoBusqueda = pokemon.tipos.includes(busqueda);
 
-    const coincideNumero =
-      String(pokemon.id) === busqueda;
+    const coincideFiltroTipo =
+      tipoSeleccionado === "todos" ||
+      pokemon.tipos.includes(tipoSeleccionado);
 
-    return coincideNombre || coincideNumero;
+    const coincideBusqueda =
+      !busqueda ||
+      coincideNombre ||
+      coincideNumero ||
+      coincideTipoBusqueda;
+
+    return coincideBusqueda && coincideFiltroTipo;
   });
 
   mostrarPokemons(resultados);
@@ -467,181 +413,297 @@ const buscarPokemons = () => {
 
 ### Explicación
 
-Primero se obtiene el contenido del buscador:
+Primero se normaliza el texto introducido:
 
 ```js
 const busqueda = inputBusqueda.value.trim().toLowerCase();
 ```
 
-`trim()` permite eliminar espacios sobrantes y `toLowerCase()` permite que la búsqueda no dependa de utilizar mayúsculas o minúsculas.
+`trim()` elimina los espacios sobrantes al principio y al final, mientras que `toLowerCase()` convierte el texto a minúsculas para que la búsqueda no dependa de cómo se escriba el nombre.
 
-Después se recorren los Pokémon que ya tenemos guardados y se comprueba si coincide el nombre o el número.
+Después se utiliza `filter()` para recorrer el array y seleccionar los Pokémon que cumplen las condiciones.
 
-Para el nombre se utiliza:
+Para buscar por nombre se utiliza:
 
 ```js
 pokemon.nombre.includes(busqueda)
 ```
 
-Esto permite realizar búsquedas por fragmentos.
+Esto permite buscar por fragmentos del nombre. Por ejemplo, escribir `char` permite encontrar Pokémon cuyos nombres contengan ese texto.
 
-Por ejemplo:
-
-```text
-char
-```
-
-puede encontrar Pokémon cuyo nombre contenga esa parte.
-
-Para el número se comprueba que sea exactamente igual:
+Para buscar por número se utiliza:
 
 ```js
 String(pokemon.id) === busqueda
 ```
 
-### Buscar mientras escribimos
+Así, escribir `25` permite encontrar a Pikachu, mientras que la búsqueda numérica debe coincidir con el identificador completo.
 
-Además del botón de búsqueda, los resultados se actualizan mientras escribimos:
+También se comprueba si el texto coincide con alguno de los tipos del Pokémon.
+
+### Búsqueda y filtro combinados
+
+La función comprueba por separado si el Pokémon coincide con el texto introducido y si pertenece al tipo seleccionado.
+
+Finalmente, ambas condiciones se combinan:
 
 ```js
-inputBusqueda.addEventListener("input", () => {
-  buscarPokemons();
-});
+return coincideBusqueda && coincideFiltroTipo;
 ```
 
-De esta forma no es necesario realizar una nueva petición a PokéAPI cada vez que se escribe una letra.
+El operador `&&` hace que el Pokémon deba cumplir las dos condiciones al mismo tiempo.
 
-### Buscar con Enter
+Si se selecciona el tipo `fire` y se escribe un nombre, solo se mostrarán los Pokémon que coincidan con la búsqueda y que sean de tipo fuego.
 
-El formulario también permite realizar la búsqueda pulsando Enter:
+### Búsqueda vacía y resultados
+
+Si la búsqueda está vacía, `!busqueda` permite que coincidan todos los Pokémon que cumplan el filtro de tipo seleccionado.
+
+Si no existe ninguna coincidencia, `mostrarPokemons()` limpia el contenedor y muestra el mensaje:
+
+```text
+No se han encontrado Pokémon.
+```
+
+Cuando hay resultados, se muestra el número de coincidencias.
+
+### Envío del formulario
+
+El formulario permite realizar la búsqueda pulsando el botón o la tecla Enter:
 
 ```js
 formulario.addEventListener("submit", (evento) => {
   evento.preventDefault();
-
   buscarPokemons();
 });
 ```
 
-### Búsqueda vacía
+El evento `submit` ejecuta la búsqueda y `preventDefault()` evita que la página se recargue.
 
-Si el usuario borra todo el contenido del buscador, vuelven a aparecer todos los Pokémon:
+### Captura de la búsqueda
+
+![Búsqueda de Pokémon](assets/img/capturaBusqueda.png)
+
+> **Pendiente:** comprobar y actualizar la captura con la versión actual de la aplicación.
+
+### Commit
+
+> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
+
+---
+
+## 5. Filtro por tipo
+
+La aplicación incluye un selector que permite mostrar únicamente los Pokémon de un tipo determinado.
+
+Las opciones no se escriben manualmente, sino que se obtienen de los tipos presentes en los Pokémon cargados.
+
+### Obtener los tipos
+
+La función `cargarTipos()` recorre el array `pokemons` y reúne todos los tipos sin repetirlos:
 
 ```js
-if (!busqueda) {
-  mostrarPokemons(pokemons);
-  mensaje.textContent = `Pokémon cargados: ${pokemons.length}`;
-  return;
-}
+const cargarTipos = () => {
+  const tipos = [];
+
+  for (const pokemon of pokemons) {
+    for (const tipo of pokemon.tipos) {
+      if (!tipos.includes(tipo)) {
+        tipos.push(tipo);
+      }
+    }
+  }
+
+  tipos.sort();
+
+  filtroTipo.innerHTML =
+    '<option value="todos">Todos los tipos</option>';
+
+  for (const tipo of tipos) {
+    filtroTipo.innerHTML += `
+      <option value="${tipo}">${tipo}</option>
+    `;
+  }
+};
 ```
 
-### Captura
+Se utiliza `includes()` para comprobar si un tipo ya está en el array y evitar duplicados.
 
-![Búsqueda](assets/img/capturaBusqueda.png)
+Después, `sort()` ordena los tipos alfabéticamente y se crean las opciones del selector. La primera opción permite mostrar todos los Pokémon.
 
-> **Pendiente:** comprobar y actualizar la captura cuando la versión final esté terminada.
+### Aplicar el filtro
 
-### Commit
+Cuando el usuario selecciona un tipo, se ejecuta este evento:
 
-> **Pendiente:** añadir enlace o identificador del commit.
+```js
+filtroTipo.addEventListener("change", () => {
+  buscarPokemons();
+});
+```
 
----
+El evento `change` vuelve a ejecutar la función de búsqueda para actualizar los resultados.
 
-# 5. Filtros por tipo
+Dentro de `buscarPokemons()` se comprueba si el filtro está desactivado o si el Pokémon pertenece al tipo seleccionado:
 
-En esta fase se añadirá un selector para poder filtrar los Pokémon según su tipo.
+```js
+const coincideFiltroTipo =
+  tipoSeleccionado === "todos" ||
+  pokemon.tipos.includes(tipoSeleccionado);
+```
 
-El selector tendrá una opción para mostrar todos los Pokémon y diferentes opciones obtenidas a partir de los datos cargados.
+### Combinar búsqueda y tipo
 
-La búsqueda por nombre o número y el filtro por tipo deberán funcionar conjuntamente.
+El filtro por tipo funciona junto con la barra de búsqueda. De esta forma, podemos escribir un nombre o fragmento y seleccionar un tipo para reducir los resultados.
 
-### Código
+Por ejemplo, si escribimos un nombre y seleccionamos `fire`, solo aparecerán los Pokémon que coincidan con el texto y pertenezcan a ese tipo.
 
-> **Pendiente:** añadir el código cuando se implemente esta parte.
+### Captura de los filtros
 
-### Funcionamiento
+![Filtros por tipo](assets/img/filtros.png)
 
-El usuario podrá:
-
-* Mostrar todos los Pokémon.
-* Seleccionar un tipo.
-* Buscar un Pokémon y aplicar un tipo al mismo tiempo.
-* Ver un mensaje si no existe ningún resultado.
-
-### Captura
-
-![Filtros](assets/img/filtros.png)
-
-> **Pendiente:** añadir captura cuando esta parte esté terminada.
+> **Pendiente:** añadir una captura real del filtro por tipo y otra que muestre la búsqueda combinada con el filtro.
 
 ### Commit
 
-> **Pendiente:** añadir enlace o identificador del commit.
+> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
 
 ---
 
-# 6. Detalles de un Pokémon
+## 6. Información ampliada de los Pokémon
 
-Cada tarjeta tendrá un botón `Ver detalles`.
+Cada tarjeta contiene un botón `VER DETALLES` que permite consultar más información sin recargar la página.
 
-Al pulsarlo se mostrará información más completa sin necesidad de recargar la página.
+Al pulsarlo se abre una ventana con los datos ampliados del Pokémon seleccionado.
 
-Los detalles mostrarán:
+### Detectar el botón pulsado
 
-* Nombre.
-* Número.
+Para controlar los botones se utiliza un evento de clic sobre el contenedor `resultado`:
+
+```js
+resultado.addEventListener("click", (evento) => {
+  const boton = evento.target.closest(".pokemon__boton-detalles");
+
+  if (!boton) {
+    return;
+  }
+
+  // Resto del código para mostrar los detalles
+});
+```
+
+Este sistema permite detectar los clics en los botones de todas las tarjetas sin tener que añadir un evento individual a cada uno.
+
+Una vez identificado el botón, se obtiene la tarjeta correspondiente y se busca el Pokémon en el array mediante su número.
+
+### Información mostrada
+
+La ventana muestra:
+
+* Nombre y número.
 * Imagen frontal.
 * Tipos.
-* Altura.
-* Peso.
+* Altura y peso.
 * Experiencia base.
 * Habilidades.
-* PS.
-* Ataque.
-* Defensa.
-* Ataque especial.
-* Defensa especial.
-* Velocidad.
+* Estadísticas base.
 
-### Código
+La información procede del objeto `Pokemon` que ya está guardado en el array, por lo que no es necesario realizar otra petición a la API para abrir los detalles.
 
-> **Pendiente:** añadir el código cuando se implemente esta parte.
+### Habilidades
 
-### Captura
+Las habilidades se convierten en elementos HTML de una lista:
 
-![Detalles](assets/img/detalles.png)
+```js
+const habilidadesHTML = pokemon.habilidades
+  .map((habilidad) => `<li>${habilidad}</li>`)
+  .join("");
+```
 
-> **Pendiente:** añadir captura cuando esta parte esté terminada.
+Se utiliza `map()` para crear un elemento `<li>` por cada habilidad y `join("")` para unirlos.
+
+### Estadísticas base
+
+Las estadísticas se muestran mediante:
+
+```js
+const estadisticasHTML = pokemon.estadisticas
+  .map((estadistica) => `
+    <div class="dato">
+      <span>
+        ${estadistica.stat.name}
+      </span>
+      <strong>${estadistica.base_stat}</strong>
+    </div>
+  `)
+  .join("");
+```
+
+Cada estadística muestra el nombre original que proporciona PokéAPI y su valor base.
+
+Se incluyen los seis valores requeridos: `hp`, `attack`, `defense`, `special-attack`, `special-defense` y `speed`.
+
+### Abrir y cerrar la ventana
+
+Para mostrar la ventana se modifica su propiedad `hidden` y su estilo:
+
+```js
+ventanaDetalles.hidden = false;
+ventanaDetalles.style.display = "flex";
+```
+
+Para cerrarla se vuelve a ocultar:
+
+```js
+ventanaDetalles.hidden = true;
+ventanaDetalles.style.display = "none";
+```
+
+La ventana se puede cerrar mediante el botón de cierre o pulsando sobre el fondo oscuro exterior. Ninguna de estas acciones recarga la página.
+
+### Capturas de los detalles
+
+![Detalles de un Pokémon](assets/img/detalles.png)
+
+> **Pendiente:** añadir una captura real de la ventana abierta y, si es posible, otra con la ventana cerrada.
 
 ### Commit
 
-> **Pendiente:** añadir enlace o identificador del commit.
+> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
 
 ---
 
-# 7. Estados y gestión de errores
+## 7. Estados y gestión de errores
 
-La aplicación tendrá diferentes estados para informar al usuario de lo que está ocurriendo.
+La aplicación contempla diferentes situaciones para informar al usuario de lo que está ocurriendo.
 
-Los estados principales serán:
+Los estados principales son:
 
-* Preparado.
-* Cargando.
-* Cargado.
-* Sin resultados.
-* Error.
+* Carga de los Pokémon.
+* Carga completada.
+* Búsqueda sin resultados.
+* Error al consultar la API.
 
 ### Estado de carga
 
-Durante la carga se muestra:
+Al comenzar la carga se muestra:
 
 ```js
 mensaje.textContent = "Cargando Pokémon...";
 ```
 
-### Estado sin resultados
+Esto informa al usuario de que la aplicación está obteniendo los datos.
 
-Cuando no se encuentra ningún Pokémon:
+### Carga completada
+
+Cuando termina la carga correctamente, se muestra el número de Pokémon:
+
+```js
+mensaje.textContent = `Pokémon cargados: ${pokemons.length}`;
+```
+
+### Búsqueda sin resultados
+
+Si no hay coincidencias, se vacía el contenedor y se muestra un mensaje:
 
 ```js
 if (lista.length === 0) {
@@ -651,9 +713,9 @@ if (lista.length === 0) {
 }
 ```
 
-### Estado de error
+### Error al cargar los datos
 
-Si existe un problema al cargar los datos:
+Si ocurre un error durante la carga, se muestra un mensaje comprensible:
 
 ```js
 catch (error) {
@@ -664,19 +726,27 @@ catch (error) {
 }
 ```
 
-Los mensajes están pensados para que el usuario pueda entender qué ha ocurrido sin tener que conocer los detalles técnicos de JavaScript o de la API.
+Así evitamos mostrar directamente información técnica del error al usuario.
+
+**Aspecto pendiente:** el mensaje invita a reintentar, pero en el código actual no hay un botón que permita hacerlo. Para completar este requisito, habrá que implementar la acción de reintento y comprobarla.
+
+### Captura de errores
+
+![Gestión de errores](assets/img/error.png)
+
+> **Pendiente:** comprobar el comportamiento ante un error real de conexión y añadir una captura de la prueba.
 
 ### Commit
 
-> **Pendiente:** añadir enlace o identificador del commit.
+> **Pendiente:** añadir el enlace o identificador del commit de esta fase.
 
 ---
 
-# 8. Diseño responsive
+## 8. Diseño adaptable (responsive)
 
-La aplicación debe poder utilizarse tanto en ordenador como en dispositivos con pantallas pequeñas.
+La aplicación utiliza CSS para organizar las tarjetas en una cuadrícula que se adapta al espacio disponible.
 
-Para ello se utiliza CSS Grid para organizar las tarjetas:
+Por ejemplo:
 
 ```css
 .resultado {
@@ -686,7 +756,9 @@ Para ello se utiliza CSS Grid para organizar las tarjetas:
 }
 ```
 
-También se utiliza una media query para adaptar el diseño a pantallas pequeñas:
+`grid-template-columns` permite crear tantas columnas como quepan, respetando un ancho mínimo para las tarjetas.
+
+También se utilizan media queries para modificar la distribución en pantallas pequeñas:
 
 ```css
 @media (max-width: 480px) {
@@ -704,44 +776,52 @@ También se utiliza una media query para adaptar el diseño a pantallas pequeña
 }
 ```
 
-De esta manera, en pantallas pequeñas las tarjetas pasan a ocupar una columna y los controles del buscador se colocan uno debajo de otro.
+Con estas reglas, las tarjetas pueden mostrarse en una sola columna en móviles y los controles del buscador se colocan uno debajo de otro.
 
-### Captura
+> **Nota:** estos fragmentos son ejemplos de las reglas utilizadas. Deben coincidir con el CSS definitivo del proyecto.
+
+### Captura del diseño adaptable
 
 ![Diseño responsive](assets/img/responsive.png)
 
-> **Pendiente:** añadir captura de la versión móvil.
+> **Pendiente:** añadir una captura real de la aplicación en una ventana estrecha o dispositivo móvil.
 
 ---
 
-# 9. Pruebas realizadas
+## 9. Pruebas finales
 
-Para comprobar que la aplicación funciona correctamente se realizarán diferentes pruebas.
+Para comprobar que la aplicación cumple los requisitos, se deben realizar las siguientes pruebas y anotar el resultado real de cada una.
 
-| Prueba                         | Resultado esperado                     | Resultado |
-| ------------------------------ | -------------------------------------- | --------- |
-| Abrir la aplicación            | La página carga correctamente          | ⬜         |
-| Cargar Pokémon                 | Aparecen los Pokémon                   | ⬜         |
-| Buscar `pikachu`               | Aparece Pikachu                        | ⬜         |
-| Buscar `25`                    | Aparece el Pokémon número 25           | ⬜         |
-| Buscar `char`                  | Aparecen Pokémon que coinciden         | ⬜         |
-| Buscar un Pokémon inexistente  | Aparece mensaje de no resultados       | ⬜         |
-| Borrar la búsqueda             | Vuelven a aparecer todos               | ⬜         |
-| Filtrar por tipo               | Aparecen Pokémon del tipo seleccionado | ⬜         |
-| Combinar búsqueda y tipo       | Se aplican ambos filtros               | ⬜         |
-| Pasar el ratón por una tarjeta | Cambia al sprite frontal               | ⬜         |
-| Quitar el ratón                | Vuelve al sprite trasero               | ⬜         |
-| Abrir detalles                 | Aparece la información completa        | ⬜         |
-| Cerrar detalles                | El panel se cierra correctamente       | ⬜         |
-| Pantalla pequeña               | La aplicación se adapta                | ⬜         |
-| Error de conexión              | Aparece un mensaje comprensible        | ⬜         |
-| Consola del navegador          | No aparecen errores de JavaScript      | ⬜         |
+| Prueba                          | Resultado esperado                                     | Resultado |
+| ------------------------------- | ------------------------------------------------------ | --------- |
+| Abrir la aplicación             | Se muestra la interfaz sin errores                     | Pendiente |
+| Iniciar la carga                | Aparece el mensaje de carga                            | Pendiente |
+| Terminar la carga               | Se muestran los 151 Pokémon                            | Pendiente |
+| Buscar `pikachu`                | Aparece Pikachu                                        | Pendiente |
+| Buscar `25`                     | Aparece Pikachu                                        | Pendiente |
+| Buscar `char`                   | Aparecen Pokémon cuyos nombres contienen el fragmento  | Pendiente |
+| Buscar un nombre inexistente    | Aparece un mensaje de ausencia de resultados           | Pendiente |
+| Vaciar la búsqueda              | Vuelven a aparecer los Pokémon del filtro seleccionado | Pendiente |
+| Seleccionar `fire`              | Solo aparecen Pokémon de tipo fuego                    | Pendiente |
+| Combinar búsqueda y tipo        | Se aplican ambas condiciones                           | Pendiente |
+| Pasar el cursor por una tarjeta | Se muestra el sprite frontal                           | Pendiente |
+| Retirar el cursor               | Vuelve a mostrarse el sprite trasero                   | Pendiente |
+| Pulsar `VER DETALLES`           | Aparece la información ampliada                        | Pendiente |
+| Revisar las habilidades         | Se muestran las habilidades del Pokémon                | Pendiente |
+| Revisar las estadísticas        | Aparecen las seis estadísticas base                    | Pendiente |
+| Cerrar los detalles             | La ventana se cierra sin recargar la página            | Pendiente |
+| Simular un error de conexión    | Aparece un mensaje comprensible                        | Pendiente |
+| Reintentar después de un error  | La aplicación permite volver a cargar los datos        | Pendiente |
+| Reducir el ancho de la ventana  | Las tarjetas se adaptan sin desbordamientos            | Pendiente |
+| Revisar la consola              | No aparecen errores durante el uso normal              | Pendiente |
+
+Después de ejecutar cada prueba, se actualizará la columna de resultado y se añadirán capturas de las funcionalidades principales.
 
 ---
 
-# 10. Estructura final del proyecto
+## 10. Estructura final del proyecto
 
-La estructura final del proyecto será:
+La estructura prevista del proyecto es:
 
 ```text
 pokedex/
@@ -760,15 +840,16 @@ pokedex/
 ### Descripción de los archivos
 
 * `index.html`: contiene la estructura principal de la página.
-* `style.css`: contiene los estilos y el diseño responsive.
-* `app.js`: contiene la lógica principal de la aplicación.
-* `Pokemon.js`: contiene la clase utilizada para representar los datos necesarios de cada Pokémon.
-* `README.md`: contiene la documentación del desarrollo del proyecto.
-* `assets/img/`: contiene las capturas utilizadas en la documentación.
+* `css/style.css`: contiene los estilos de las tarjetas, el buscador, los filtros, la ventana de detalles y el diseño adaptable.
+* `js/app.js`: contiene la lógica de carga, búsqueda, filtrado, creación de tarjetas y gestión de los detalles.
+* `js/Pokemon.js`: contiene la clase que representa los datos necesarios de cada Pokémon.
+* `README.md`: documenta el proceso de desarrollo, las pruebas y las capturas.
+* `assets/img/`: contiene las imágenes utilizadas como evidencias en este documento.
+* `assets/images/`: puede contener otros recursos gráficos utilizados en la aplicación.
 
 ---
 
-# 11. Tecnologías utilizadas
+## 11. Tecnologías utilizadas
 
 Para realizar el proyecto se han utilizado:
 
@@ -780,35 +861,54 @@ Para realizar el proyecto se han utilizado:
 * Git.
 * GitHub.
 
-No se han utilizado frameworks ni librerías externas de JavaScript.
+No se han utilizado frameworks ni bibliotecas externas de JavaScript.
 
 ---
 
-# 12. Historial de commits
+## 12. Historial de commits
 
-Durante el desarrollo se realizarán varios commits para poder ver la evolución del proyecto.
+El historial de Git debe permitir distinguir el punto de partida de la práctica guiada y las ampliaciones realizadas posteriormente.
 
-| Fase              | Descripción                               | Commit    |
-| ----------------- | ----------------------------------------- | --------- |
-| Punto de partida  | Estado inicial de la mini-Pokédex         | Pendiente |
-| Carga de datos    | Carga de la colección de Pokémon          | Pendiente |
-| Tarjetas          | Creación y diseño de las tarjetas         | Pendiente |
-| Búsqueda          | Búsqueda por nombre, fragmento y número   | Pendiente |
-| Filtros           | Filtros por tipo y combinación de filtros | Pendiente |
-| Detalles          | Panel de información detallada            | Pendiente |
-| Estados y errores | Gestión de estados y errores              | Pendiente |
-| Responsive        | Adaptación a diferentes pantallas         | Pendiente |
-| Revisión final    | Últimas correcciones y mejoras            | Pendiente |
+| Fase              | Descripción                                       | Commit    |
+| ----------------- | ------------------------------------------------- | --------- |
+| Punto de partida  | Código inicial de la mini-Pokédex                 | Pendiente |
+| Carga de datos    | Consulta de los primeros 151 Pokémon              | Pendiente |
+| Clase `Pokemon`   | Organización de los datos obtenidos               | Pendiente |
+| Tarjetas          | Generación dinámica de las tarjetas               | Pendiente |
+| Búsqueda          | Búsqueda por nombre, fragmento y número           | Pendiente |
+| Filtros           | Selector de tipos y combinación con la búsqueda   | Pendiente |
+| Detalles          | Ventana con habilidades y estadísticas            | Pendiente |
+| Estados y errores | Mensajes de carga, error y ausencia de resultados | Pendiente |
+| Diseño adaptable  | Ajustes para ordenador y móvil                    | Pendiente |
+| Revisión final    | Pruebas, correcciones y documentación             | Pendiente |
+
+Los identificadores y enlaces se añadirán cuando se hayan realizado y subido los commits correspondientes.
 
 ---
 
-# 13. Conclusiones
+## 13. Conclusiones
 
-Con esta actividad se ha ampliado la mini-Pokédex inicial utilizando JavaScript para trabajar con datos obtenidos desde una API.
+Con esta actividad se ha ampliado la mini-Pokédex inicial utilizando JavaScript para consultar y transformar información de PokéAPI.
 
-Durante el desarrollo se ha trabajado con peticiones a una API, arrays, objetos, clases, eventos, búsqueda, filtros, generación dinámica de HTML y gestión de errores.
+Durante el desarrollo se han trabajado las peticiones con `fetch()`, las funciones asíncronas, los arrays, los objetos, las clases y los métodos `map()`, `filter()` y `join()`.
 
-También se ha mejorado el diseño de la aplicación para que sea más completa y pueda utilizarse en diferentes tamaños de pantalla.
+También se ha practicado la manipulación del DOM, la gestión de eventos, la creación dinámica de tarjetas, la búsqueda, los filtros y la visualización de información ampliada mediante una ventana de detalles.
 
-> **Pendiente:** completar esta sección al finalizar el proyecto con una valoración personal del desarrollo, las dificultades encontradas y lo aprendido durante la actividad.
+Además, se ha trabajado en la organización del proyecto en distintos archivos y en la documentación del desarrollo mediante Git, GitHub y este README.
+
+> **Pendiente de completar al finalizar:** añadir una valoración personal sobre las dificultades encontradas, cómo se resolvieron y qué conocimientos se han adquirido.
+
+---
+
+## 14. Ejecución del proyecto
+
+Para ejecutar la aplicación:
+
+1. Descargar o clonar el repositorio de GitHub.
+2. Abrir la carpeta del proyecto en Visual Studio Code.
+3. Abrir `index.html` mediante un servidor local o una extensión como Live Server.
+4. Comprobar que hay conexión a Internet para que las peticiones a PokéAPI funcionen.
+5. Utilizar el buscador, el selector de tipos y los botones de detalles.
+
+No es necesario instalar Node.js ni utilizar frameworks para ejecutar la aplicación.
 
