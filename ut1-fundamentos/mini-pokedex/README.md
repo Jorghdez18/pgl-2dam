@@ -26,6 +26,8 @@ La mini-Pokédex inicial tiene las siguientes funcionalidades:
 
 ![](assets/img/capturaFuncionamiento.png)
 
+---
+
 ## Avanzando en el Proyecto:
 
 ### Código utilizado para obtener un Pokémon
