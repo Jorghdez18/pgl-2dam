@@ -20,15 +20,13 @@ La mini-Pokédex inicial tiene las siguientes funcionalidades:
 
 ### Estructura inicial de carpetas y archivos
 
-![Estructura inicial](assets/img/tree.png)
+![](assets/img/tree.png)
 
 ### Aplicación funcionando y búsqueda
 
-![Aplicación funcionando](assets/img/capturaFuncionamiento.png)
+![](assets/img/capturaFuncionamiento.png)
 
-### Gestión de un Pokémon inexistente o de otro error controlado
-
-![](assets/img/error.png)
+## Avanzando en el Proyecto:
 
 ### Código utilizado para obtener un Pokémon
 
