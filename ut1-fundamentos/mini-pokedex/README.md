@@ -750,12 +750,29 @@ Para realizar el proyecto se ha utilizado:
 
   Primera parte: El contador mostrará en todo momento cuántos Pokémon aparecen en la cuadrícula. Al cargar la Pokédex por primera vez deberá mostrar 151 resultados
 
-  
   ![](assets/img/modificacion1-1.png)
 
-   Segunda parte: Se actualiza con la búsqueda, el tipo y la combinación de ambos.
+  Segunda parte: Se actualiza con la búsqueda, el tipo y la combinación de ambos.
 
-    ![](assets/img/modificacion1-2.png)
+  ![](assets/img/modificacion1-2.png)
+
+  Cuando no existan coincidecias mostrará 0 resultados:
+
+  ![](assets/img/modificacion1-2ERROR.png)
+
+  Tercera parte: Añade un botón que vacíe la búsqueda, seleccione de nuevo Todos los tipos y muestre los 151
+  Pokémon. El restablecimiento se realizará sin recargar la página ni repetir las peticiones a PokéAPI.
+
+  ![](assets/img/modificacion1-3.png)
+
+  
+  
+
+  
+
+  
+
+  
 
   
   
