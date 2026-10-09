@@ -28,7 +28,7 @@ La mini-Pokédex inicial tiene las siguientes funcionalidades:
 
 ### Gestión de un Pokémon inexistente o de otro error controlado
 
-![Error controlado](assets/img/error.png)
+![](assets/img/error.png)
 
 ### Código utilizado para obtener un Pokémon
 
@@ -220,7 +220,7 @@ La altura y el peso se guardan inicialmente con las unidades proporcionadas por 
 
 ### Captura de la carga
 
-![Carga de Pokémon](assets/img/carga.png)
+![](assets/img/carga.png)
 
 ---
 
@@ -350,7 +350,7 @@ Este botón permite abrir una ventana con información ampliada del Pokémon sel
 
 ### Capturas de las tarjetas
 
-![Tarjetas de Pokémon](assets/img/tarjetas.png)
+![](assets/img/tarjetas.png)
 
 ---
 
@@ -466,7 +466,7 @@ El evento `submit` ejecuta la búsqueda y `preventDefault()` evita que la págin
 
 ### Captura de la búsqueda
 
-![Búsqueda de Pokémon](assets/img/capturaBusqueda.png)
+![](assets/img/capturaBusqueda.png)
 
 ---
 
@@ -537,7 +537,7 @@ Por ejemplo, si escribimos un nombre y seleccionamos `fire`, solo aparecerán lo
 
 ### Captura de los filtros
 
-![Filtros por tipo](assets/img/filtros.png)
+![](assets/img/filtros.png)
 
 ---
 
@@ -634,7 +634,7 @@ La ventana se puede cerrar mediante el botón de cierre o pulsando sobre el fond
 
 ### Capturas de los detalles
 
-![Detalles de un Pokémon](assets/img/detalles.png)
+![](assets/img/detalles.png)
 
 ---
 
@@ -698,7 +698,7 @@ Así evitamos mostrar directamente información técnica del error al usuario.
 
 ### Captura de errores
 
-![Gestión de errores](assets/img/error.png)
+![](assets/img/error.png)
 
 
 ---
