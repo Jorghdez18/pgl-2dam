@@ -1,13 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
   <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Mini-Pokédex</title>
 
@@ -26,16 +23,11 @@
 
       <h1>MINI-POKÉDEX</h1>
 
-      <p>
-        BUSCA UN POKÉMON
-      </p>
+      <p>BUSCA UN POKÉMON</p>
 
     </header>
 
-    <form
-      id="formulario-busqueda"
-      class="buscador"
-    >
+    <form id="formulario-busqueda" class="buscador">
 
       <label for="busqueda">
         NOMBRE O NÚMERO
@@ -59,18 +51,41 @@
 
     </form>
 
-    <p
-      id="mensaje"
-      class="mensaje"
-      aria-live="polite"
-    ></p>
+    <div class="filtro-tipos">
 
-    <section
-      id="resultado"
-      class="resultado"
-    ></section>
+      <label for="filtro-tipo">
+        FILTRAR POR TIPO
+      </label>
+
+      <select id="filtro-tipo">
+        <option value="todos">Todos los tipos</option>
+      </select>
+
+    </div>
+
+    <p id="mensaje" class="mensaje" aria-live="polite"></p>
+
+    <section id="resultado" class="resultado"></section>
 
   </main>
+
+  <div id="ventana-detalles" class="ventana-detalles" hidden>
+
+    <div class="ventana-detalles__contenido">
+
+      <button
+        type="button"
+        id="cerrar-detalles"
+        class="ventana-detalles__cerrar"
+      >
+        CERRAR ✕
+      </button>
+
+      <div id="contenido-detalles"></div>
+
+    </div>
+
+  </div>
 
   <footer class="pie">
     MINI-POKÉDEX · 2º DAM
@@ -80,4 +95,6 @@
   <script src="js/app.js"></script>
 
 </body>
+
 </html>
+
