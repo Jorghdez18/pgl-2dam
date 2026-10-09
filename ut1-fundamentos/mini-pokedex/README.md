@@ -744,7 +744,9 @@ Para realizar el proyecto se ha utilizado:
 * Git.
 * GitHub.
 
-No se han utilizado frameworks ni bibliotecas externas de JavaScript.
+  ## 10. Modificaciones:
+
+  
 
 ---
 
