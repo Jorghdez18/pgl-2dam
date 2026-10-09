@@ -752,7 +752,7 @@ Para realizar el proyecto se ha utilizado:
 
   Segunda parte: Se actualiza con la búsqueda, el tipo y la combinación de ambos: ![](assets/img/modificacion1-2.png)
 
-  Cuando no existan coincidecias mostrará 0 resultados: m![](assets/img/modificacion1-2ERROR.png)
+  Cuando no existan coincidecias mostrará 0 resultados: ![](assets/img/modificacion1-2ERROR.png)
 
   Tercera parte: Añade un botón que vacíe la búsqueda, seleccione de nuevo Todos los tipos y muestre los 151
   Pokémon. El restablecimiento se realizará sin recargar la página ni repetir las peticiones a PokéAPI.
