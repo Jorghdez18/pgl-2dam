@@ -700,42 +700,9 @@ Así evitamos mostrar directamente información técnica del error al usuario.
 
 ![](assets/img/error.png)
 
-
 ---
 
-
-## 9. Pruebas finales
-
-Para comprobar que la aplicación cumple los requisitos, se deben realizar las siguientes pruebas y anotar el resultado real de cada una.
-
-| Prueba                          | Resultado esperado                                     | Resultado |
-| ------------------------------- | ------------------------------------------------------ | --------- |
-| Abrir la aplicación             | Se muestra la interfaz sin errores                     | Pendiente |
-| Iniciar la carga                | Aparece el mensaje de carga                            | Pendiente |
-| Terminar la carga               | Se muestran los 151 Pokémon                            | Pendiente |
-| Buscar `pikachu`                | Aparece Pikachu                                        | Pendiente |
-| Buscar `25`                     | Aparece Pikachu                                        | Pendiente |
-| Buscar `char`                   | Aparecen Pokémon cuyos nombres contienen el fragmento  | Pendiente |
-| Buscar un nombre inexistente    | Aparece un mensaje de ausencia de resultados           | Pendiente |
-| Vaciar la búsqueda              | Vuelven a aparecer los Pokémon del filtro seleccionado | Pendiente |
-| Seleccionar `fire`              | Solo aparecen Pokémon de tipo fuego                    | Pendiente |
-| Combinar búsqueda y tipo        | Se aplican ambas condiciones                           | Pendiente |
-| Pasar el cursor por una tarjeta | Se muestra el sprite frontal                           | Pendiente |
-| Retirar el cursor               | Vuelve a mostrarse el sprite trasero                   | Pendiente |
-| Pulsar `VER DETALLES`           | Aparece la información ampliada                        | Pendiente |
-| Revisar las habilidades         | Se muestran las habilidades del Pokémon                | Pendiente |
-| Revisar las estadísticas        | Aparecen las seis estadísticas base                    | Pendiente |
-| Cerrar los detalles             | La ventana se cierra sin recargar la página            | Pendiente |
-| Simular un error de conexión    | Aparece un mensaje comprensible                        | Pendiente |
-| Reintentar después de un error  | La aplicación permite volver a cargar los datos        | Pendiente |
-| Reducir el ancho de la ventana  | Las tarjetas se adaptan sin desbordamientos            | Pendiente |
-| Revisar la consola              | No aparecen errores durante el uso normal              | Pendiente |
-
-Después de ejecutar cada prueba, se actualizará la columna de resultado y se añadirán capturas de las funcionalidades principales.
-
----
-
-## 10. Estructura final del proyecto
+## 8. Estructura final del proyecto
 
 La estructura prevista del proyecto es:
 
@@ -765,11 +732,11 @@ pokedex/
 
 ---
 
-## 11. Tecnologías utilizadas
+## 9. Tecnologías utilizadas
 
-Para realizar el proyecto se han utilizado:
+Para realizar el proyecto se ha utilizado:
 
-* HTML5.
+* HTML.
 * CSS3.
 * JavaScript.
 * PokéAPI.
@@ -781,28 +748,7 @@ No se han utilizado frameworks ni bibliotecas externas de JavaScript.
 
 ---
 
-## 12. Historial de commits
-
-El historial de Git debe permitir distinguir el punto de partida de la práctica guiada y las ampliaciones realizadas posteriormente.
-
-| Fase              | Descripción                                       | Commit    |
-| ----------------- | ------------------------------------------------- | --------- |
-| Punto de partida  | Código inicial de la mini-Pokédex                 | Pendiente |
-| Carga de datos    | Consulta de los primeros 151 Pokémon              | Pendiente |
-| Clase `Pokemon`   | Organización de los datos obtenidos               | Pendiente |
-| Tarjetas          | Generación dinámica de las tarjetas               | Pendiente |
-| Búsqueda          | Búsqueda por nombre, fragmento y número           | Pendiente |
-| Filtros           | Selector de tipos y combinación con la búsqueda   | Pendiente |
-| Detalles          | Ventana con habilidades y estadísticas            | Pendiente |
-| Estados y errores | Mensajes de carga, error y ausencia de resultados | Pendiente |
-| Diseño adaptable  | Ajustes para ordenador y móvil                    | Pendiente |
-| Revisión final    | Pruebas, correcciones y documentación             | Pendiente |
-
-Los identificadores y enlaces se añadirán cuando se hayan realizado y subido los commits correspondientes.
-
----
-
-## 13. Conclusiones
+## 10. Conclusiones
 
 Con esta actividad se ha ampliado la mini-Pokédex inicial utilizando JavaScript para consultar y transformar información de PokéAPI.
 
@@ -815,16 +761,4 @@ Además, se ha trabajado en la organización del proyecto en distintos archivos 
 > **Pendiente de completar al finalizar:** añadir una valoración personal sobre las dificultades encontradas, cómo se resolvieron y qué conocimientos se han adquirido.
 
 ---
-
-## 14. Ejecución del proyecto
-
-Para ejecutar la aplicación:
-
-1. Descargar o clonar el repositorio de GitHub.
-2. Abrir la carpeta del proyecto en Visual Studio Code.
-3. Abrir `index.html` mediante un servidor local o una extensión como Live Server.
-4. Comprobar que hay conexión a Internet para que las peticiones a PokéAPI funcionen.
-5. Utilizar el buscador, el selector de tipos y los botones de detalles.
-
-No es necesario instalar Node.js ni utilizar frameworks para ejecutar la aplicación.
 
