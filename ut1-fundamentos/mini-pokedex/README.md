@@ -746,6 +746,18 @@ Para realizar el proyecto se ha utilizado:
 
   ## 10. Modificaciones:
 
+  ### Modificación 1:
+
+  Primera parte: El contador mostrará en todo momento cuántos Pokémon aparecen en la cuadrícula. Al cargar la Pokédex por primera vez deberá mostrar 151 resultados
+
+  
+  ![](assets/img/modificacion1-1.png)
+
+   Segunda parte: Se actualiza con la búsqueda, el tipo y la combinación de ambos.
+
+    ![](assets/img/modificacion1-2.png)
+
+  
   
 
 ---
