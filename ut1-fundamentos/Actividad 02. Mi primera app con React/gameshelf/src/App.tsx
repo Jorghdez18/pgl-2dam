@@ -1,3 +1,6 @@
+
+// src/App.tsx
+import { useState } from "react";
 import "./App.css";
 import GameCard from "./components/GameCard";
 
@@ -26,24 +29,66 @@ const games: Game[] = [
   { id: 14, title: "Mario Kart 8 Deluxe", genre: "Carreras", price: 47.85, available: true },
   { id: 15, title: "Cyberpunk 2077", genre: "Acción RPG", price: 19.99, available: true },
   { id: 16, title: "Grand Theft Auto V", genre: "Acción", price: 14.99, available: true },
-
 ];
 
 function App() {
+  // 1. Estados lógicos para controlar los botones de filtrado
+  const [verSoloDisponibles, setVerSoloDisponibles] = useState<boolean>(false);
+  const [verSoloEconomicos, setVerSoloEconomicos] = useState<boolean>(false);
+
+  // 2. Lógica combinada que filtra el catálogo en tiempo real
+  const juegosFiltrados = games.filter((game) => {
+    if (verSoloDisponibles && !game.available) {
+      return false; // Descarta los agotados si el filtro está encendido
+    }
+    if (verSoloEconomicos && game.price >= 15) {
+      return false; // Descarta los de 15€ o más si el filtro está encendido
+    }
+    return true; // Conserva el juego si pasa los filtros activos
+  });
+
   return (
     <main className="app">
       <h1>GameShelf</h1>
-      <p>Mi catálogo de videojuegos</p>
+      <p className="subtitle">Mi catálogo de videojuegos</p>
+
+      {/* 3. Panel de control con los botones de filtrado interactivos */}
+      <section className="filter-panel">
+        <button
+          className={`filter-btn ${verSoloDisponibles ? "active" : ""}`}
+          onClick={() => setVerSoloDisponibles(!verSoloDisponibles)}
+        >
+          {verSoloDisponibles ? "Mostrar Todos" : "Ver Solo Disponibles"}
+        </button>
+
+        <button
+          className={`filter-btn ${verSoloEconomicos ? "active" : ""}`}
+          onClick={() => setVerSoloEconomicos(!verSoloEconomicos)}
+        >
+          {verSoloEconomicos ? "Todos los Precios" : "Ofertas (Menos de 15 €)"}
+        </button>
+      </section>
+
+      {/* 4. Contador dinámico que se actualiza al filtrar */}
+      <div className="counter-display">
+        Mostrando <strong>{juegosFiltrados.length}</strong> de {games.length} videojuegos
+      </div>
+
+      {/* 5. Renderizado adaptativo de la cuadrícula */}
       <section className="catalog">
-        {games.map((game) => (
-          <GameCard
-            key={game.id}
-            title={game.title}
-            genre={game.genre}
-            price={game.price}
-            available={game.available}
-          />
-        ))}
+        {juegosFiltrados.length > 0 ? (
+          juegosFiltrados.map((game) => (
+            <GameCard
+              key={game.id}
+              title={game.title}
+              genre={game.genre}
+              price={game.price}
+              available={game.available}
+            />
+          ))
+        ) : (
+          <p className="no-results">No hay videojuegos que coincidan con la búsqueda.</p>
+        )}
       </section>
     </main>
   );
