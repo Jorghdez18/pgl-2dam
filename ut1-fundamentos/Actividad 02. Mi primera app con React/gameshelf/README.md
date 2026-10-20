@@ -1,5 +1,4 @@
 ## Preguntas a responder de Axios:
----
 
 - ¿Cómo se importa Axios en un archivo TypeScript?
 - ¿Cómo se solicita información con una petición GET?
