@@ -1,5 +1,5 @@
-import Practica5Screen from '../screens/Practica5Screen';
+import Practica6Screen from '../screens/Practica6Screen';
 
 export default function Index() {
-  return <Practica5Screen />;
+  return <Practica6Screen />;
 }
