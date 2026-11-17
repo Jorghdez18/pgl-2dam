@@ -385,3 +385,164 @@ const styles = StyleSheet.create({
 ![](./img/dossier5.png)
 
 ---
+
+#  Tarea 6:
+
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es comprender las diferencias entre los componentes táctiles TouchableOpacity y TouchableHighlight en React Native frente a los botones nativos tradicionales
+
+---
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación del nuevo componente `CajaTouchable.tsx` (sustituyendo los botones nativos por contenedores táctiles personalizados) y de la pantalla `Practica6Screen.tsx` para conservar las prácticas anteriores consultables.
+2. **Implementación:** Programamos el botón de decremento con `TouchableOpacity` (reduciendo su opacidad al pulsar) y el de incremento con `TouchableHighlight` (aplicando `underlayColor` y disparando una ventana emergente con `Alert.alert`), montamos las tres cajas en `Practica6Screen.tsx` y actualizamos `index.tsx` para mostrar esta pantalla.
+3. **Pruebas:** Ejecución en el emulador de Android Studio verificando el efecto visual de cada componente táctil, el lanzamiento de la alerta al sumar y el reparto proporcional de espacio en pantalla.
+
+---
+
+## 💻 3. Código Implementado
+
+
+```jsx
+
+import { StyleSheet, Text, View } from 'react-native';
+import CajaTouchable from '../components/CajaTouchable';
+
+export default function Practica6Screen() {
+  return (
+    <View style={styles.contenedor}>
+      <Text style={styles.titulo}>Práctica 6: Componentes Táctiles</Text>
+
+      <View style={styles.escenario}>
+        <CajaTouchable nombre="Caja 1" bg="#e53935" />
+        <CajaTouchable nombre="Caja 2" bg="#1e88e5" />
+        <CajaTouchable nombre="Caja 3" bg="#43a047" />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  contenedor: {
+    flex: 1,
+    paddingTop: 50,
+    backgroundColor: '#f5f5f5',
+  },
+  titulo: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 15,
+  },
+  escenario: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#e0e0e0',
+    margin: 16,
+    padding: 10,
+    borderRadius: 12,
+  },
+});
+
+
+```
+
+```jsx
+
+import { useState } from 'react';
+import { Alert, StyleSheet, Text, TouchableHighlight, TouchableOpacity, View } from 'react-native';
+
+type Props = {
+  nombre: string;
+  bg?: string;
+};
+
+export default function CajaTouchable({ nombre, bg = '#43a047' }: Props) {
+  const [valorFlex, setValorFlex] = useState(1);
+
+  const manejarIncremento = () => {
+    setValorFlex(n => n + 1);
+    Alert.alert('Flex aumentado', `${nombre} ahora tiene flex: ${valorFlex + 1}`);
+  };
+
+  return (
+    <View style={[styles.caja, { backgroundColor: bg, flex: valorFlex }]}>
+      <Text style={styles.texto}>
+        {nombre} — flex: {valorFlex}
+      </Text>
+
+      <View style={styles.filaBotones}>
+        <TouchableOpacity
+          style={styles.botonRestar}
+          activeOpacity={0.6}
+          onPress={() => setValorFlex(n => Math.max(0, n - 1))}
+        >
+          <Text style={styles.textoBoton}>-1 Flex</Text>
+        </TouchableOpacity>
+
+        <TouchableHighlight
+          style={styles.botonSumar}
+          underlayColor="#1b5e20"
+          onPress={manejarIncremento}
+        >
+          <Text style={styles.textoBoton}>+1 Flex</Text>
+        </TouchableHighlight>
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  caja: {
+    width: '90%',
+    minHeight: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 12,
+    padding: 10,
+    marginVertical: 4,
+  },
+  texto: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 8,
+  },
+  filaBotones: {
+    flexDirection: 'row',
+    gap: 15,
+  },
+  botonRestar: {
+    backgroundColor: '#212121',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+  },
+  botonSumar: {
+    backgroundColor: '#004d40',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'white',
+  },
+  textoBoton: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
+  },
+});
+
+
+```
+
+---
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier6.png)
+
+---
