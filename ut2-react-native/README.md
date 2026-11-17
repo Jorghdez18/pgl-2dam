@@ -256,3 +256,132 @@ const styles = StyleSheet.create({
 ![](./img/dossier4.png)
 
 ---
+
+#  Tarea 5:
+
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es comprender cómo la propiedad flex reparte dinámicamente el espacio disponible entre elementos hermanos dentro de un contenedor en React Native.
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación del nuevo componente `CajaFlex.tsx` (una variante sin altura fija para que `flex` pueda actuar libremente) y de la pantalla `Practica5Screen.tsx` para mantener el ejercicio independiente y consultable.
+2. **Implementación:** Programamos la lógica de estado individual (`useState`) con los botones para incrementar y decrementar `valorFlex` (limitado a un mínimo de `0` con `Math.max`), montamos las tres cajas en `Practica5Screen.tsx` y actualizamos `index.tsx` para mostrar esta pantalla.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando cómo se reorganiza y reparte proporcionalmente el espacio entre las tres cajas al pulsar los botones.
+
+---
+
+## 💻 3. Código Implementado
+
+
+```jsx
+import { StyleSheet, Text, View } from 'react-native';
+import CajaFlex from '../components/CajaFlex';
+
+export default function Practica5Screen() {
+  return (
+    <View style={styles.contenedor}>
+      <Text style={styles.titulo}>Práctica 5: Reparto con Flex</Text>
+
+      <View style={styles.escenario}>
+        <CajaFlex nombre="Caja 1" bg="#e53935" />
+        <CajaFlex nombre="Caja 2" bg="#1e88e5" />
+        <CajaFlex nombre="Caja 3" bg="#43a047" />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  contenedor: {
+    flex: 1,
+    paddingTop: 50,
+    backgroundColor: '#f5f5f5',
+  },
+  titulo: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 15,
+  },
+  escenario: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#e0e0e0',
+    margin: 16,
+    padding: 10,
+    borderRadius: 12,
+  },
+});
+
+
+```
+
+```jsx
+import { useState } from 'react';
+import { Button, StyleSheet, Text, View } from 'react-native';
+
+type Props = {
+  nombre: string;
+  bg?: string;
+};
+
+export default function CajaFlex({ nombre, bg = '#43a047' }: Props) {
+  const [valorFlex, setValorFlex] = useState(1);
+
+  return (
+    <View style={[styles.caja, { backgroundColor: bg, flex: valorFlex }]}>
+      <Text style={styles.texto}>
+        {nombre} — flex: {valorFlex}
+      </Text>
+
+      <View style={styles.filaBotones}>
+        <Button
+          title="-"
+          color="#212121"
+          onPress={() => setValorFlex(n => Math.max(0, n - 1))}
+        />
+        <Button
+          title="+"
+          color="#212121"
+          onPress={() => setValorFlex(n => n + 1)}
+        />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  caja: {
+    width: '90%',
+    minHeight: 70,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+    padding: 8,
+    marginVertical: 4,
+  },
+  texto: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginBottom: 6,
+  },
+  filaBotones: {
+    flexDirection: 'row',
+    gap: 15,
+  },
+});
+
+
+```
+
+---
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier5.png)
+
+---
