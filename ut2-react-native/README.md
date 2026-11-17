@@ -135,3 +135,24 @@ const styles = StyleSheet.create({
 
 ---
 
+#  Tarea 3:
+
+
+## 🎯 1. Objetivo de la tarea
+Separar las últimas dos actividades en pantallas diferentes dentro de la carpeta src/screens
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación / Configuración:** Creación de la carpeta screens dentro de src, y de los archivos HolaMundo.tsx e InicioScreen.tsx.
+2. **Implementación:**Implementamos el código de cada pantalla dentro de su respectivo archivo
+
+---
+
+
+## 📸 3. Resultado (Capturas de pantalla)
+
+![](./img/dossier3.png)
+
+---
