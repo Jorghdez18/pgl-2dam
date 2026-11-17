@@ -174,25 +174,79 @@ Comprender el funcionamiento básico de Flexbox en React Native y aprender a cre
 
 ## 💻 3. Código Implementado
 
+
 ```jsx
 import { StyleSheet, Text, View } from 'react-native';
+import Caja from '../components/Caja';
 
-export default function Index() {
+export default function PrincipalScreen() {
   return (
-    <View style={styles.pantalla}>
-      <Text>¡Hola mundo! Soy Jorge</Text>
+    <View style={styles.contenedor}>
+      <Text style={styles.titulo}>Contenedor Principal</Text>
+      
+      <View style={styles.escenario}>
+        <Caja nombre="Caja 1" bg="#e53935" />
+        <Caja nombre="Caja 2" bg="#1e88e5" />
+        <Caja nombre="Caja 3" bg="#43a047" />
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  pantalla: {
-    alignItems: 'center',
-    backgroundColor: 'lightpink',
+  contenedor: {
     flex: 1,
-    justifyContent: 'center',
+    paddingTop: 50,
+    backgroundColor: '#f5f5f5',
+  },
+  titulo: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  escenario: {
+    flex: 1,
+    justifyContent: 'space-around', 
+    alignItems: 'center',          
+    backgroundColor: '#e0e0e0',
+    margin: 16,
+    borderRadius: 12,
   },
 });
+
+```
+
+```jsx
+import { StyleSheet, Text, View } from 'react-native';
+
+type Props = { 
+  nombre: string; 
+  bg?: string; 
+};
+
+export default function Caja({ nombre, bg = 'green' }: Props) {
+  return (
+    <View style={[styles.caja, { backgroundColor: bg }]}>
+      <Text style={styles.texto}>{nombre}</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  caja: { 
+    height: 100, 
+    width: 100, 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    borderRadius: 8,
+  },
+  texto: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+});
+
 ```
 
 ---
