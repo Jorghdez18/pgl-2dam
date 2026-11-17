@@ -546,3 +546,131 @@ const styles = StyleSheet.create({
 ![](./img/dossier6.png)
 
 ---
+
+#  Tarea 7:
+
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es aprender a personalizar la apariencia de componentes reutilizables en React Native mediante el envío de estilos como propiedades (Props), utilizando el tipado StyleProp<ViewStyle> de TypeScript
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación del nuevo componente `CajaEstilo.tsx` preparado para recibir estilos externos mediante la propiedad tipada `style?: StyleProp<ViewStyle>`, junto con la pantalla `Practica7Screen.tsx`.
+2. **Implementación:** Combinamos los estilos por defecto con los recibidos mediante el array `[styles.porDefecto, style]`, instanciamos en `Practica7Screen.tsx` las tres cajas (`Caja A`, `Caja B` con esquinas redondeadas y borde grueso, y `Caja C` personalizada) y actualizamos `index.tsx` para visualizarla.
+3. **Pruebas:** Ejecución en el emulador de Android Studio verificando que cada caja aplica correctamente sus estilos personalizados sobrescribiendo los valores base sin duplicar código.
+
+---
+
+## 💻 3. Código Implementado
+
+```jsx
+import { StyleSheet, Text, View } from 'react-native';
+import CajaEstilo from '../components/CajaEstilo';
+
+export default function Practica7Screen() {
+  return (
+    <View style={styles.contenedor}>
+      <Text style={styles.titulo}>Práctica 7: Estilos por Props</Text>
+
+      <View style={styles.escenario}>
+        {/* Caja A: conserva el estilo por defecto */}
+        <CajaEstilo nombre="Caja A" />
+
+        {/* Caja B: esquinas redondeadas y borde diferente */}
+        <CajaEstilo
+          nombre="Caja B"
+          style={{
+            backgroundColor: '#e53935',
+            borderRadius: 20,
+            borderWidth: 7,
+            borderColor: '#ffcdd2',
+          }}
+        />
+
+        {/* Caja C: otro estilo personalizado */}
+        <CajaEstilo
+          nombre="Caja C"
+          style={{
+            backgroundColor: '#43a047',
+            borderRadius: 50,
+            borderWidth: 4,
+            borderColor: '#1b5e20',
+            width: 200,
+          }}
+        />
+      </View>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  contenedor: {
+    flex: 1,
+    paddingTop: 50,
+    backgroundColor: '#f5f5f5',
+  },
+  titulo: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 15,
+  },
+  escenario: {
+    flex: 1,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: '#e0e0e0',
+    margin: 16,
+    padding: 15,
+    borderRadius: 12,
+  },
+});
+
+
+```
+
+```jsx
+import type { StyleProp, ViewStyle } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+
+type Props = {
+  nombre: string;
+  style?: StyleProp<ViewStyle>;
+};
+
+export default function CajaEstilo({ nombre, style }: Props) {
+  return (
+    <View style={[styles.porDefecto, style]}>
+      <Text style={styles.texto}>{nombre}</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  porDefecto: {
+    height: 110,
+    width: 150,
+    backgroundColor: '#1976d2',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 2,
+    borderColor: '#0d47a1',
+  },
+  texto: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+});
+
+
+```
+---
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier7.png)
+
+---
