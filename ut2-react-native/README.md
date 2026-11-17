@@ -64,7 +64,7 @@ Creación de dos botones, uno que incremente y otro que descremente, además de 
 
 1. **Edición:** Edición de la pantalla principal de la aplciación para que muestre lo que deseemos.
 2. **Implementación:** Implementamos funciones que hagan las funciones que buscamos para completar la actividad.
-3. **Pruebas:** Ejecución en emulador Android / dispositivo físico con Expo Go, logeandonos en expo y configurándolo.
+3. **Pruebas:** Ejecución en emulador Android
 
 ---
 
@@ -154,5 +154,51 @@ Separar las últimas dos actividades en pantallas diferentes dentro de la carpet
 ## 📸 3. Resultado (Capturas de pantalla)
 
 ![](./img/dossier3.png)
+
+---
+
+#  Tarea 4:
+
+
+## 🎯 1. Objetivo de la tarea
+Comprender el funcionamiento básico de Flexbox en React Native y aprender a crear componentes reutilizables.
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación :** Creación del componente caja.tsx para no tener que repetir código, además de la pantalla PincipalScreen.tsx
+2. **Implementación:** Creamos el código para ambos arvhivos y dentro de index.tsx actualizamos para que se vea la patalla nueva.
+3. **Pruebas:** Ejecución en emulador Android
+---
+
+## 💻 3. Código Implementado
+
+```jsx
+import { StyleSheet, Text, View } from 'react-native';
+
+export default function Index() {
+  return (
+    <View style={styles.pantalla}>
+      <Text>¡Hola mundo! Soy Jorge</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  pantalla: {
+    alignItems: 'center',
+    backgroundColor: 'lightpink',
+    flex: 1,
+    justifyContent: 'center',
+  },
+});
+```
+
+---
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier4.png)
 
 ---
