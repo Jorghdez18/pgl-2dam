@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
 });
 
 
+```
 ---
 
 ## 📸 4. Resultado (Capturas de pantalla)
