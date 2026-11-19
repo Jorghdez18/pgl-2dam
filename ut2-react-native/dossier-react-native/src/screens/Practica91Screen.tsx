@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// Lista previa con llamadas estáticas a require (ajusta los nombres a los archivos reales de tu carpeta assets)
 const imagenes = [
   { nombre: 'Icono App', source: require('../../assets/images/icon.png') },
   { nombre: 'React Logo', source: require('../../assets/images/react-logo.png') },

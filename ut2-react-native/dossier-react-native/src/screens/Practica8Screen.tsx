@@ -8,7 +8,6 @@ export default function Practica8Screen() {
 
   const anadirCirculo = () => {
     const indice = colores.length;
-    // Calculamos valores RGB progresivos y limitados a 255
     const r = Math.min(255, (indice * 35) % 260);
     const g = Math.min(255, 80 + ((indice * 25) % 180));
     const b = Math.min(255, 220 - ((indice * 20) % 200));
