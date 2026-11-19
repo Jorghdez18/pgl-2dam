@@ -1459,5 +1459,35 @@ src/
 
 ---
 
+# Tarea 12:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es aprender a utilizar diálogos nativos de confirmación mediante **`Alert.alert()`** en React Native para interactuar con el usuario antes de ejecutar una acción.
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación de la pantalla `Practica12Screen.tsx` protegida con `SafeAreaView` y su correspondiente ruta `practica12.tsx` dentro de `src/app/`, añadiendo el acceso en el índice principal (`index.tsx`) y en la pila de navegación (`_layout.tsx`).
+2. **Implementación:** Definimos una lista de colores con su nombre y código hexadecimal, gestionamos el color activo mediante `useState` y programamos un botón táctil (`TouchableOpacity`) que elige un color aleatorio con `Math.random()` y lanza `Alert.alert()` con las opciones de cancelar o aceptar para actualizar el fondo.
+3. **Pruebas:** Ejecución en el emulador de Android Studio verificando que al pulsar «Cancelar» se conserva el color de fondo anterior y al pulsar «Aceptar» se aplica el nuevo color propuesto.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado la estructura del proyecto integrando la nueva pantalla dentro del sistema de rutas existente:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/screens/Practica12Screen.tsx`:** Pantalla principal con la lógica de selección aleatoria de colores, el diálogo de confirmación `Alert.alert()` y la tarjeta de interfaz dinámica.
+* **`src/app/practica12.tsx`:** Archivo de ruta de Expo Router que exporta la pantalla hacia la navegación.
+* **`src/app/_layout.tsx` e `index.tsx`:** Actualización del menú principal y de la pila `Stack` para permitir el acceso directo a la Práctica 12.
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier12.png)
+![](./img/dossier12b.png)
+
+---
+
 
 
