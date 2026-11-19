@@ -1,4 +1,5 @@
-#  Tarea 1:
+#  Dossier react-native:
+
 
 * **Módulo:** Programación Multimedia y Dispositivos Móviles (PGL - 2º DAM)
 * **Unidad:** UT2 - React Native
@@ -6,6 +7,8 @@
 * **Fecha:** 12/11/2026
 
 ---
+
+#  Tarea 1:
 
 ## 🎯 1. Objetivo de la tarea
 Crear un "hola mundo" con expo para despues usar un emulador de un telefono móvil y asi representar en la pantalla nuestro mensaje
