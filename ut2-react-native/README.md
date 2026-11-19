@@ -1408,4 +1408,56 @@ const styles = StyleSheet.create({
 
 ---
 
+# Tarea 11:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es reorganizar la estructura del proyecto utilizando Expo Router para mantener todas las prácticas accesibles desde un índice principal y separar la lógica de negocio de la interfaz de usuario. Para ello, se extraen los estados y funciones matemáticas de la calculadora a un hook personalizado (`useCalculadora.ts`), logrando una pantalla más limpia, modular y fácil de mantener.
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación de la carpeta `src/hooks/` con el archivo `useCalculadora.ts`, además de la nueva pantalla `Practica11Screen.tsx` y los archivos de ruta correspondientes dentro de `src/app/` (`practica04.tsx` hasta `practica11.tsx`).
+2. **Implementación:** Extraímos todos los estados y operaciones de cálculo hacia el hook personalizado `useCalculadora`, conectándolo en `Practica11Screen.tsx` para dejar únicamente la interfaz visual. Además, configuramos la navegación en `_layout.tsx` mediante `Stack` y transformamos `src/app/index.tsx` en un índice general con enlaces (`Link`) a cada práctica.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando que la navegación desde el menú principal abre cada ejercicio correctamente y que la calculadora mantiene todas sus funciones intactas mediante el hook.
+
+
+## 💻 3. Código Implementado
+
+Para mantener el proyecto escalable y evitar duplicar archivos extensos, se ha estructurado la aplicación siguiendo el patrón de separación entre **rutas**, **pantallas**, **componentes** y **lógica de negocio (hooks)**:
+
+### 📂 Estructura del Proyecto
+
+```
+src/
+├── app/
+│   ├── _layout.tsx             # Configuración de navegación Stack
+│   ├── index.tsx               # Menú principal con enlaces (Link)
+│   └── practica04..11.tsx      # Rutas dinámicas de cada ejercicio
+├── components/
+│   └── TeclaCalculadora.tsx    # Botón reutilizable de la calculadora
+├── hooks/
+│   └── useCalculadora.ts       # Lógica y estados de cálculo extraídos
+└── screens/
+    └── Practica11Screen.tsx    # Interfaz visual conectada al hook
+
+```
+
+### 🧩 Resumen de Archivos Clave
+
+| Archivo | Rol en la Arquitectura | Responsabilidad Principal |
+| :--- | :--- | :--- |
+| **`useCalculadora.ts`** | Custom Hook | Gestiona los estados (`actual`, `anterior`, `operacion`) y las operaciones matemáticas sin mezclar lógica con la vista. |
+| **`Practica11Screen.tsx`** | Vista / Pantalla | Renderiza el visor y el teclado de la calculadora consumiendo únicamente los datos y funciones que devuelve el hook. |
+| **`TeclaCalculadora.tsx`** | Componente UI | Encapsula el diseño táctil (`TouchableOpacity`) y los estilos de cada botón numérico o de operación. |
+| **`_layout.tsx` e `index.tsx`** | Navegación (Expo Router) | Configuran la pila de pantallas (`Stack`) y el índice interactivo para acceder a todas las prácticas anteriores. |
+
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier11.png)
+
+---
+
+
 
