@@ -17,6 +17,8 @@ export default function Index() {
         <Link href="/practica091" style={styles.enlace}>Práctica 9.1: Imagen aleatoria</Link>
         <Link href="/practica10" style={styles.enlace}>Práctica 10: Calculadora</Link>
         <Link href="/practica11" style={styles.enlace}>Práctica 11: Calculadora con Hook</Link>
+        <Link href="/practica12" style={styles.enlace}>Práctica 12: Color con confirmación</Link>
+
       </ScrollView>
     </SafeAreaView>
   );
