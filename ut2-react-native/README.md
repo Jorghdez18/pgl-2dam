@@ -1489,5 +1489,36 @@ Para esta práctica se ha ampliado la estructura del proyecto integrando la nuev
 
 ---
 
+# Tarea 13:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es implementar una ventana modal multiplataforma mediante los componentes **`Modal`** y **`TextInput`** para solicitar texto al usuario tanto en Android como en iOS (evitando la dependencia de `Alert.prompt()`). Además, se valida mediante expresiones regulares y listas de nombres CSS que el color introducido sea válido antes de actualizar el estado del fondo de la pantalla.
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación de la pantalla `Practica13Screen.tsx` protegida con `SafeAreaView` y su archivo de ruta `practica13.tsx` dentro de `src/app/`, registrando el acceso correspondiente en `_layout.tsx` y en el índice general (`index.tsx`).
+2. **Implementación:** Programamos un diálogo emergente transparente (`Modal`) con un campo controlado `TextInput` y botones personalizados para cancelar o aceptar. Antes de aplicar el cambio, validamos con expresiones regulares y una lista de nombres CSS que el texto sea un color válido, mostrando una alerta si es incorrecto.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando que al cancelar se conserva el fondo anterior, que los textos no válidos son rechazados y que al aceptar un nombre CSS o código hexadecimal válido se actualiza el fondo al instante.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado el proyecto siguiendo la arquitectura modular establecida:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/screens/Practica13Screen.tsx`:** Pantalla principal que gestiona el estado de visibilidad del `Modal`, la captura de texto con `TextInput`, la validación de formatos de color (CSS y HEX) y la actualización del fondo.
+* **`src/app/practica13.tsx`:** Ruta de Expo Router que expone la pantalla en la navegación.
+* **`src/app/_layout.tsx` e `index.tsx`:** Registro de la nueva ruta en la pila `Stack` y adición del enlace en el menú principal.
+
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier13a.png)
+![](./img/dossier13b.png)
+
+
 
 
