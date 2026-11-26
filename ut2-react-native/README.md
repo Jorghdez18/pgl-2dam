@@ -1587,3 +1587,36 @@ Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular e
 
 ---
 
+# Tarea 16:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es aprender a renderizar colecciones de datos de forma eficiente en React Native mediante el componente **`FlatList`**, configurando sus propiedades fundamentales (`data`, `keyExtractor`, `renderItem` y `ListHeaderComponent`). Además, se aplica formato condicional según la posición de cada elemento (`index % 2`) para alternar los colores de fondo entre filas pares e impares sin necesidad de añadir separadores.
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación de la pantalla `Practica16Screen.tsx` protegida con `SafeAreaView` y su archivo de ruta `practica16.tsx` dentro de `src/app/`, añadiendo el acceso correspondiente en `_layout.tsx` y en el índice general (`index.tsx`).
+2. **Implementación:** Definimos el tipo `Producto` y una lista de artículos con `id`, `nombre`, `precio` y `stock`. Configuramos un `FlatList` con cabecera centrada de mayor tamaño («Lista Productos») y renderizamos cada fila alternando el color de fondo entre posiciones pares e impares mediante el índice.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando el desplazamiento fluido de la lista, la ausencia de separadores entre elementos y la correcta alternancia de colores en cada producto.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular establecida:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/screens/Practica16Screen.tsx`:** Pantalla principal que define el catálogo de productos y configura el componente `FlatList` con cabecera personalizada y estilos alternos por fila.
+* **`src/app/practica16.tsx`:** Ruta de Expo Router que expone la pantalla en la navegación.
+* **`src/app/_layout.tsx` e `index.tsx`:** Registro de la nueva ruta en la pila `Stack` y adición del enlace en el menú principal.
+
+---
+
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier16.png)
+
+---
+
