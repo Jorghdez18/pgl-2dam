@@ -21,6 +21,7 @@ export default function Index() {
         <Link href="/practica13" style={styles.enlace}>Práctica 13: Introducir el color</Link>
         <Link href="/practica14" style={styles.enlace}>Práctica 14: Borde con Switch</Link>
         <Link href="/practica15" style={styles.enlace}>Práctica 15: Formulario de persona</Link>
+        <Link href="/practica16" style={styles.enlace}>Práctica 16: Lista de productos</Link>
 
       </ScrollView>
     </SafeAreaView>
