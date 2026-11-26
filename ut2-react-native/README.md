@@ -1620,3 +1620,37 @@ Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular e
 
 ---
 
+# Tarea 17:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es construir una lista dinámica de componentes interactivos mediante **`FlatList`** y estado compartido entre componente padre e hijo. Para ello, se desarrolla el componente reutilizable `CardPersona.tsx` con estado local para gestionar el nombre, la altura y el peso, calculando en tiempo real el Índice de Masa Corporal (IMC) con validación frente a divisiones entre cero y permitiendo añadir o eliminar tarjetas dinámicamente mediante funciones pasadas por propiedades (`Props`).
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación del componente reutilizable `CardPersona.tsx` en `src/components/`, la pantalla contenedora `Practica17Screen.tsx` protegida con `SafeAreaView` y su ruta `practica17.tsx` dentro de `src/app/`, registrando el acceso correspondiente en `_layout.tsx` y en el índice general (`index.tsx`).
+2. **Implementación:** Programamos en `CardPersona.tsx` los estados locales (`nombre`, `altura` y `peso`) junto con la función de cálculo del IMC validada para evitar divisiones entre cero, recibiendo la función `onEliminar` por propiedades. En `Practica17Screen.tsx` gestionamos un array de identificadores únicos (`ids`) para renderizar las tarjetas con claves estables y permitir añadir nuevas con el botón «+» o borrar las existentes.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando que se pueden crear múltiples tarjetas independientes, calcular el IMC correctamente sin errores al dejar campos vacíos o en cero, y eliminar tarjetas concretas manteniendo el estado de las restantes.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado el proyecto siguiendo la arquitectura modular establecida:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/components/CardPersona.tsx`:** Componente tarjeta con campos controlados, cálculo validado del IMC en tiempo real y botón de eliminación conectado al componente padre.
+* **`src/screens/Practica17Screen.tsx`:** Pantalla contenedora que administra el listado de identificadores únicos, el botón «+» de creación y el renderizado dinámico con `FlatList`.
+* **`src/app/practica17.tsx`:** Ruta de Expo Router que expone la pantalla en la navegación.
+* **`src/app/_layout.tsx` e `index.tsx`:** Registro de la nueva ruta en la pila `Stack` y adición del enlace en el menú principal.
+
+---
+
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier17.png)
+
+---
+
