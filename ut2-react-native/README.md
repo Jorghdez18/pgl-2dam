@@ -1552,5 +1552,38 @@ Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular e
 
 ---
 
+# Tarea 15:
 
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es construir un formulario controlado en React Native combinando campos de texto (`TextInput`) e interruptores (`Switch`) gestionados desde un único objeto de estado con `useState` y TypeScript (`DatosPersona`). Además, se implementa una función genérica tipada (`cambiarCampo`) para actualizar propiedades individuales de forma segura, validando que el nombre no esté vacío y que la edad sea numérica antes de mostrar el resumen final.
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación de la pantalla `Practica15Screen.tsx` protegida con `SafeAreaView` y su archivo de ruta `practica15.tsx` dentro de `src/app/`, añadiendo el acceso correspondiente en `_layout.tsx` y en el índice general (`index.tsx`).
+2. **Implementación:** Definimos el tipo `DatosPersona` (`nombre`, `edad`, `casado` y `jubilado`), creamos la función genérica `cambiarCampo<K extends keyof DatosPersona>` para actualizar cada control, incorporamos los interruptores de estado civil y jubilación, y programamos la validación de campos antes de renderizar la tarjeta de resumen en pantalla.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando las alertas de validación ante nombres vacíos o edades no numéricas, y verificando que el resumen muestra correctamente los cuatro datos introducidos.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular establecida:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/screens/Practica15Screen.tsx`:** Pantalla principal que gestiona el estado del formulario, la función genérica de actualización de campos, la validación de datos y el resumen final.
+* **`src/app/practica15.tsx`:** Ruta de Expo Router que expone la pantalla en la navegación.
+* **`src/app/_layout.tsx` e `index.tsx`:** Registro de la nueva ruta en la pila `Stack` y adición del enlace en el menú principal.
+
+
+---
+
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier15.png)
+![](./img/dossier15b.png)
+
+---
 
