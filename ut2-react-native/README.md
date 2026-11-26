@@ -1686,3 +1686,36 @@ Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular e
 
 ---
 
+
+# Tarea 19:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es combinar iconos vectoriales interactivos de **`@expo/vector-icons`** (`Ionicons`) con un campo de texto controlado (`TextInput`) mediante `useState`. Para ello, se dispone una fila de botones con iconos sobre el área de escritura que, al ser pulsados, concatenan dinámicamente su secuencia textual correspondiente (`:-)`, `:-(`, `<3`, etc.) al final del mensaje actual utilizando actualizaciones funcionales de estado (`setTexto(actual => actual + secuencia)`).
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación de la pantalla `Practica19Screen.tsx` protegida con `SafeAreaView` y su archivo de ruta `practica19.tsx` dentro de `src/app/`, añadiendo el acceso correspondiente en `_layout.tsx` y en el índice general (`index.tsx`).
+2. **Implementación:** Definimos un catálogo tipado con `keyof typeof Ionicons.glyphMap` para garantizar nombres de iconos válidos, renderizamos la barra superior de emoticonos con `TouchableOpacity` y conectamos cada pulsación a la actualización del estado `texto` vinculado a un `TextInput` multilínea, incluyendo además un botón para limpiar el campo.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando que al escribir texto manualmente y pulsar distintos iconos se añaden las secuencias correspondientes al final del contenido sin perder lo escrito previamente.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular establecida:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/screens/Practica19Screen.tsx`:** Pantalla principal que gestiona la lista tipada de iconos de `Ionicons`, la inserción dinámica de secuencias de texto y el campo `TextInput` controlado.
+* **`src/app/practica19.tsx`:** Ruta de Expo Router que expone la pantalla en la navegación.
+* **`src/app/_layout.tsx` e `index.tsx`:** Registro de la nueva ruta en la pila `Stack` y adición del enlace en el menú principal.
+
+---
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier19.png)
+
+---
+
