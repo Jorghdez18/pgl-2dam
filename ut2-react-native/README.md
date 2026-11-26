@@ -1654,3 +1654,35 @@ Para esta práctica se ha ampliado el proyecto siguiendo la arquitectura modular
 
 ---
 
+# Tarea 18:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es integrar familias de iconos vectoriales mediante **`@expo/vector-icons`** (`Ionicons`) en React Native y gestionar una colección dinámica de registros en estado con `useState` y `FlatList`. Para ello, se desarrolla un diario de emociones que analiza el texto introducido para asignar un icono visual según contenga expresiones como `:-)` o `:-(` y almacena cada entrada junto con la fecha y la hora exacta (incluidos los segundos).
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Instalación y Creación:** Instalación del módulo `@expo/vector-icons` compatible con el SDK de Expo, creación de la pantalla `Practica18Screen.tsx` protegida con `SafeAreaView` y generación de su ruta `practica18.tsx` en `src/app/`, registrando el acceso correspondiente en `_layout.tsx` y en el índice general (`index.tsx`).
+2. **Implementación:** Programamos un formulario con `TextInput` controlado y un botón táctil que captura la fecha y hora actual con segundos (`toLocaleTimeString`), detecta la emoción del mensaje para renderizar el icono adecuado (`happy-outline`, `sad-outline` o `remove-circle-outline`) y añade la nueva entrada al array de estado para mostrarla en un `FlatList`.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando que al escribir mensajes con `:-)` o `:-(` se representan los iconos correspondientes junto a la hora exacta con segundos, conservando todas las entradas previas en pantalla.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular establecida:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/screens/Practica18Screen.tsx`:** Pantalla principal que gestiona el estado de las entradas del diario, la detección de emoticonos en el texto, la marca de tiempo con segundos y el renderizado con `Ionicons` y `FlatList`.
+* **`src/app/practica18.tsx`:** Ruta de Expo Router que expone la pantalla en la navegación.
+* **`src/app/_layout.tsx` e `index.tsx`:** Registro de la nueva ruta en la pila `Stack` y adición del enlace en el menú principal.
+
+---
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier18.png)
+
+---
+
