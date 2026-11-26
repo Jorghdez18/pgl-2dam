@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function Index() {
-  return (
+  return (    
     <SafeAreaView style={styles.contenedor}>
       <ScrollView contentContainerStyle={styles.lista}>
         <Text style={styles.titulo}>Prácticas de React Native con Expo</Text>
@@ -19,6 +19,7 @@ export default function Index() {
         <Link href="/practica11" style={styles.enlace}>Práctica 11: Calculadora con Hook</Link>
         <Link href="/practica12" style={styles.enlace}>Práctica 12: Color con confirmación</Link>
         <Link href="/practica13" style={styles.enlace}>Práctica 13: Introducir el color</Link>
+        <Link href="/practica14" style={styles.enlace}>Práctica 14: Borde con Switch</Link>
 
       </ScrollView>
     </SafeAreaView>
