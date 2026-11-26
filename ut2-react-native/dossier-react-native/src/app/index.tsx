@@ -23,6 +23,7 @@ export default function Index() {
         <Link href="/practica15" style={styles.enlace}>Práctica 15: Formulario de persona</Link>
         <Link href="/practica16" style={styles.enlace}>Práctica 16: Lista de productos</Link>
         <Link href="/practica17" style={styles.enlace}>Práctica 17: Tarjetas cálculo IMC</Link>
+        <Link href="/practica18" style={styles.enlace}>Práctica 18: Diario de emociones</Link>
 
       </ScrollView>
     </SafeAreaView>
