@@ -1518,7 +1518,39 @@ Para esta práctica se ha ampliado el proyecto siguiendo la arquitectura modular
 
 ![](./img/dossier13a.png)
 ![](./img/dossier13b.png)
+  
+---
 
+# Tarea 14:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es aprender a utilizar el componente booleano **`Switch`** en React Native para gestionar estados binarios mediante las propiedades `value` y `onValueChange`, personalizando además el color de su indicador con `thumbColor`.
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación de la pantalla `Practica14Screen.tsx` protegida con `SafeAreaView` y su ruta `practica14.tsx` dentro de `src/app/`, añadiendo el acceso correspondiente en `_layout.tsx` y en el índice general (`index.tsx`).
+2. **Implementación:** Definimos un estado booleano `activo` con `useState`, conectamos un componente `Switch` configurando su `thumbColor` dinámico (`orange` / `brown`) y aplicamos de forma condicional un borde rojo alrededor del contenedor principal (`activo && styles.bordeActivo`) junto con un indicador textual del estado.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando que al activar el interruptor el indicador cambia a naranja y aparece el borde rojo en la pantalla, y al desactivarlo vuelve a marrón eliminando el borde.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular establecida:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/screens/Practica14Screen.tsx`:** Pantalla principal que gestiona el estado booleano, la configuración visual del `Switch` y la aplicación condicional del borde rojo.
+* **`src/app/practica14.tsx`:** Ruta de Expo Router que expone la pantalla en la navegación.
+* **`src/app/_layout.tsx` e `index.tsx`:** Registro de la nueva ruta en la pila `Stack` y adición del enlace en el menú principal.
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier14a.png)
+![](./img/dossier14b.png)
+
+---
 
 
 
