@@ -1719,3 +1719,35 @@ Para esta práctica se ha ampliado el proyecto siguiendo la estructura modular e
 
 ---
 
+# Tarea 20:
+
+## 🎯 1. Objetivo de la tarea
+El objetivo de esta actividad es implementar un navegador basado en pila (**`Stack Navigation`**) mediante Expo Router creando un subdirectorio de rutas aislado (`src/app/stack/p20/`). De este modo, se mantiene intacto el índice general de prácticas (`src/app/index.tsx`) mientras se permite apilar una pantalla secundaria (`detalle.tsx`) sobre una pantalla de inicio (`index.tsx`) con títulos de cabecera personalizados y regreso mediante `router.back()`.
+
+---
+
+## 🛠️ 2. Desarrollo y Pasos Seguidos
+
+1. **Creación:** Creación de la carpeta `src/app/stack/p20/` con su propio archivo de configuración `_layout.tsx` y las pantallas `index.tsx` (`HomeScreen`) y `detalle.tsx`, registrando después la ruta en el `_layout.tsx` raíz (`headerShown: false`) y añadiendo el acceso en el índice general.
+2. **Implementación:** Configuramos un componente `Stack` en `src/app/stack/p20/_layout.tsx` definiendo los títulos de ambas pantallas. En `HomeScreen` añadimos un enlace `<Link href="/stack/p20/detalle">` para navegar hacia delante, y en `detalle.tsx` programamos un botón que ejecuta `router.back()` para desapilar la vista y volver al origen.
+3. **Pruebas:** Ejecución en el emulador de Android Studio comprobando que al entrar desde el menú principal se muestra la cabecera con el título elegido, al pulsar «Ir a detalle» se apila la segunda pantalla y al volver se regresa correctamente a `HomeScreen`.
+
+---
+
+## 💻 3. Código Implementado
+
+Para esta práctica se ha ampliado la estructura del proyecto creando un espacio de rutas independiente para la navegación Stack:
+
+### 📂 Archivos Creados y Actualizados
+* **`src/app/stack/p20/_layout.tsx`:** Configura el navegador `Stack` propio de la práctica y los títulos de cabecera de cada pantalla.
+* **`src/app/stack/p20/index.tsx`:** Pantalla de inicio (`HomeScreen`) con el enlace de navegación hacia la vista de detalle y opción de retorno al índice.
+* **`src/app/stack/p20/detalle.tsx`:** Segunda pantalla apilada que permite regresar al origen mediante `router.back()`.
+* **`src/app/_layout.tsx` e `index.tsx`:** Registro de la carpeta `stack/p20` en la navegación raíz y adición del enlace en el índice general.
+
+## 📸 4. Resultado (Capturas de pantalla)
+
+![](./img/dossier20a.png)
+![](./img/dossier20b.png)
+
+
+---
